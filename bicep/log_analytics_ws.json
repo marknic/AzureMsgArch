@@ -1,0 +1,57 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "variables": {},
+  "resources": [
+      {
+          "type": "microsoft.operationalinsights/workspaces",
+          "apiVersion": "2020-10-01",
+          "name": "testworkspace",
+          "location": "eastus2",
+          "properties": {
+              "provisioningState": "Succeeded",
+              "sku": {
+                  "name": "pergb2018"
+              },
+              "retentionInDays": 30,
+              "features": {
+                  "enableLogAccessUsingOnlyResourcePermissions": true
+              },
+              "workspaceCapping": {
+                  "dailyQuotaGb": -1
+              },
+              "publicNetworkAccessForIngestion": "Enabled",
+              "publicNetworkAccessForQuery": "Enabled"
+          }
+      },
+      {
+          "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+          "apiVersion": "2020-08-01",
+          "name": "testworkspace/LogManagement(testworkspace)_General|AlphabeticallySortedComputers",
+          "dependsOn": [
+              "[resourceId('Microsoft.OperationalInsights/workspaces', 'testworkspace')]"
+          ],
+          "properties": {
+              "displayName": "All Computers with their most recent data",
+              "category": "General Exploration",
+              "query": "search not(ObjectName == \"Advisor Metrics\" or ObjectName == \"ManagedSpace\") | summarize AggregatedValue = max(TimeGenerated) by Computer | limit 500000 | sort by Computer asc\r\n// Oql: NOT(ObjectName=\"Advisor Metrics\" OR ObjectName=ManagedSpace) | measure max(TimeGenerated) by Computer | top 500000 | Sort Computer // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122",
+              "version": 2
+          }
+      },
+      {
+          "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+          "apiVersion": "2020-08-01",
+          "name": "testworkspace/LogManagement(testworkspace)_General|dataPointsPerManagementGroup",
+          "dependsOn": [
+              "[resourceId('Microsoft.OperationalInsights/workspaces', 'testworkspace')]"
+          ],
+          "properties": {
+              "displayName": "Which Management Group is generating the most data points?",
+              "category": "General Exploration",
+              "query": "search * | summarize AggregatedValue = count() by ManagementGroupName\r\n// Oql: * | Measure count() by ManagementGroupName // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122",
+              "version": 2
+          }
+      }
+  ]
+}

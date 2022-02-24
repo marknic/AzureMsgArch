@@ -1,0 +1,177 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "variables": {},
+  "resources": [
+      {
+          "type": "Microsoft.Storage/storageAccounts",
+          "apiVersion": "2021-04-01",
+          "name": "subnetsizeprmfunsa01",
+          "location": "centralus",
+          "tags": {
+              "CostCenter": "IT Innovation 5001",
+              "Department": "Innovation",
+              "LegalSubEntity": "Walgreen Co",
+              "SubDivision": "Innovation",
+              "DeployDate": "12/15/2020",
+              "Deployer": "Luis Cruz",
+              "DeleteDate": "02/15/2021",
+              "EnvType": "Non-Production"
+          },
+          "sku": {
+              "name": "Standard_LRS",
+              "tier": "Standard"
+          },
+          "kind": "StorageV2",
+          "properties": {
+              "minimumTlsVersion": "TLS1_2",
+              "allowBlobPublicAccess": true,
+              "networkAcls": {
+                  "bypass": "AzureServices",
+                  "virtualNetworkRules": [
+                      {
+                          "id": "/subscriptions/ead5aea8-e662-4627-836e-f893321541b5/resourceGroups/rpu-lcruz-cus-rg-01/providers/Microsoft.Network/virtualNetworks/premium-functions-cus-vnet/subnets/premium-functions-27",
+                          "action": "Allow",
+                          "state": "Succeeded"
+                      },
+                      {
+                          "id": "/subscriptions/ead5aea8-e662-4627-836e-f893321541b5/resourceGroups/rpu-lcruz-cus-rg-01/providers/Microsoft.Network/virtualNetworks/premium-functions-cus-vnet/subnets/premium-functions-28",
+                          "action": "Allow",
+                          "state": "Succeeded"
+                      },
+                      {
+                          "id": "/subscriptions/ead5aea8-e662-4627-836e-f893321541b5/resourceGroups/rpu-lcruz-cus-rg-01/providers/Microsoft.Network/virtualNetworks/premium-functions-cus-vnet/subnets/premium-functions-29",
+                          "action": "Allow",
+                          "state": "Succeeded"
+                      }
+                  ],
+                  "ipRules": [
+                      {
+                          "value": "63.239.17.0/24",
+                          "action": "Allow"
+                      },
+                      {
+                          "value": "63.73.199.0/24",
+                          "action": "Allow"
+                      },
+                      {
+                          "value": "63.73.199.69",
+                          "action": "Allow"
+                      }
+                  ],
+                  "defaultAction": "Deny"
+              },
+              "supportsHttpsTrafficOnly": true,
+              "encryption": {
+                  "services": {
+                      "file": {
+                          "keyType": "Account",
+                          "enabled": true
+                      },
+                      "blob": {
+                          "keyType": "Account",
+                          "enabled": true
+                      }
+                  },
+                  "keySource": "Microsoft.Storage"
+              },
+              "accessTier": "Hot"
+          }
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/blobServices",
+          "apiVersion": "2021-04-01",
+          "name": "subnetsizeprmfunsa01/default",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts', 'subnetsizeprmfunsa01')]"
+          ],
+          "sku": {
+              "name": "Standard_LRS",
+              "tier": "Standard"
+          },
+          "properties": {
+              "cors": {
+                  "corsRules": []
+              },
+              "deleteRetentionPolicy": {
+                  "enabled": false
+              }
+          }
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/fileServices",
+          "apiVersion": "2021-04-01",
+          "name": "subnetsizeprmfunsa01/default",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts', 'subnetsizeprmfunsa01')]"
+          ],
+          "sku": {
+              "name": "Standard_LRS",
+              "tier": "Standard"
+          },
+          "properties": {
+              "protocolSettings": {
+                  "smb": {}
+              },
+              "cors": {
+                  "corsRules": []
+              }
+          }
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/queueServices",
+          "apiVersion": "2021-04-01",
+          "name": "subnetsizeprmfunsa01/default",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts', 'subnetsizeprmfunsa01')]"
+          ],
+          "properties": {
+              "cors": {
+                  "corsRules": []
+              }
+          }
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/tableServices",
+          "apiVersion": "2021-04-01",
+          "name": "subnetsizeprmfunsa01/default",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts', 'subnetsizeprmfunsa01')]"
+          ],
+          "properties": {
+              "cors": {
+                  "corsRules": []
+              }
+          }
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+          "apiVersion": "2021-04-01",
+          "name": "subnetsizeprmfunsa01/default/azure-webjobs-secrets",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts/blobServices', 'subnetsizeprmfunsa01', 'default')]",
+              "[resourceId('Microsoft.Storage/storageAccounts', 'subnetsizeprmfunsa01')]"
+          ],
+          "properties": {
+              "defaultEncryptionScope": "$account-encryption-key",
+              "denyEncryptionScopeOverride": false,
+              "publicAccess": "None"
+          }
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/fileServices/shares",
+          "apiVersion": "2021-04-01",
+          "name": "subnetsizeprmfunsa01/default/subnet-size-premium-function-test",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts/fileServices', 'subnetsizeprmfunsa01', 'default')]",
+              "[resourceId('Microsoft.Storage/storageAccounts', 'subnetsizeprmfunsa01')]"
+          ],
+          "properties": {
+              "accessTier": "TransactionOptimized",
+              "shareQuota": 5120,
+              "enabledProtocols": "SMB"
+          }
+      }
+  ]
+}

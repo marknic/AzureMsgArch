@@ -1,5 +1,5 @@
 @description('name of the resource')
-param name string
+param name string = 'mnmsgproc01devsa'
 
 @description('Value of customer - for tags')
 param customer string = 'Walgreens'
@@ -10,9 +10,12 @@ param project string = 'Harmony'
 param environment string = 'dev'
 
 @description('Resource purpose or description - for tags')
-param purpose string = 'storage'
+param purpose string = 'storage for Azure Functions'
 
+@description('Name of the function that will use this storage account')
+param funcName string = 'mn-function-test-pf'
 
+param dateCreated string = utcNow('u')
 
 param subnetId string
 
@@ -49,5 +52,18 @@ resource sa 'Microsoft.Storage/storageAccounts@2019-06-01' = {
       ]
       defaultAction: 'Deny'
     }
+  }
+}
+
+var fileshareName = '${funcName}-fs'
+resource funcfileshare 'Microsoft.Storage/storageAccounts/fileServices/shares@2021-04-01' = {
+  name: fileshareName
+  dependsOn: [
+    sa
+  ]
+  properties: {
+    accessTier: 'TransactionOptimized'
+    shareQuota: 100
+    enabledProtocols: 'SMB'
   }
 }

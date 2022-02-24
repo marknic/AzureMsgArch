@@ -1,0 +1,387 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "variables": {},
+  "resources": [
+      {
+          "type": "Microsoft.Network/virtualNetworks",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-aml-is-centralus-vnet01",
+          "location": "centralus",
+          "tags": {
+              "LegalSubEntity": "Walgreen Co",
+              "SubDivision": "Global Cloud & Platform Service",
+              "Department": "Cloud COE",
+              "CostCenter": "Project LEAP 5001",
+              "EnvType": "Non-Production",
+              "Sensitivity": "Non-Sensitive",
+              "SenType": "Not Applicable"
+          },
+          "properties": {
+              "addressSpace": {
+                  "addressPrefixes": [
+                      "10.9.0.0/16",
+                      "10.217.212.192/27"
+                  ]
+              },
+              "subnets": [
+                  {
+                      "name": "amlwscuaks01",
+                      "properties": {
+                          "addressPrefix": "10.9.1.0/24",
+                          "networkSecurityGroup": {
+                              "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tt2-aml-rg/providers/Microsoft.Network/networkSecurityGroups/amlakscunsg"
+                          },
+                          "serviceEndpoints": [
+                              {
+                                  "service": "Microsoft.Storage",
+                                  "locations": [
+                                      "centralus",
+                                      "eastus2"
+                                  ]
+                              },
+                              {
+                                  "service": "Microsoft.ContainerRegistry",
+                                  "locations": [
+                                      "*"
+                                  ]
+                              },
+                              {
+                                  "service": "Microsoft.KeyVault",
+                                  "locations": [
+                                      "*"
+                                  ]
+                              }
+                          ],
+                          "delegations": [],
+                          "privateEndpointNetworkPolicies": "Enabled",
+                          "privateLinkServiceNetworkPolicies": "Enabled"
+                      }
+                  },
+                  {
+                      "name": "amlwscuaks02",
+                      "properties": {
+                          "addressPrefix": "10.9.2.0/24",
+                          "networkSecurityGroup": {
+                              "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tt2-aml-rg/providers/Microsoft.Network/networkSecurityGroups/amlakscunsg"
+                          },
+                          "serviceEndpoints": [
+                              {
+                                  "service": "Microsoft.Storage",
+                                  "locations": [
+                                      "centralus",
+                                      "eastus2"
+                                  ]
+                              },
+                              {
+                                  "service": "Microsoft.ContainerRegistry",
+                                  "locations": [
+                                      "*"
+                                  ]
+                              },
+                              {
+                                  "service": "Microsoft.KeyVault",
+                                  "locations": [
+                                      "*"
+                                  ]
+                              }
+                          ],
+                          "delegations": [],
+                          "privateEndpointNetworkPolicies": "Enabled",
+                          "privateLinkServiceNetworkPolicies": "Enabled"
+                      }
+                  },
+                  {
+                      "name": "amlwscuaks03",
+                      "properties": {
+                          "addressPrefix": "10.9.3.0/24",
+                          "networkSecurityGroup": {
+                              "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tt2-aml-rg/providers/Microsoft.Network/networkSecurityGroups/amlakscunsg"
+                          },
+                          "serviceEndpoints": [
+                              {
+                                  "service": "Microsoft.Storage",
+                                  "locations": [
+                                      "centralus",
+                                      "eastus2"
+                                  ]
+                              },
+                              {
+                                  "service": "Microsoft.ContainerRegistry",
+                                  "locations": [
+                                      "*"
+                                  ]
+                              },
+                              {
+                                  "service": "Microsoft.KeyVault",
+                                  "locations": [
+                                      "*"
+                                  ]
+                              }
+                          ],
+                          "delegations": [],
+                          "privateEndpointNetworkPolicies": "Enabled",
+                          "privateLinkServiceNetworkPolicies": "Enabled"
+                      }
+                  },
+                  {
+                      "name": "db01",
+                      "properties": {
+                          "addressPrefix": "10.217.212.192/27",
+                          "networkSecurityGroup": {
+                              "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tt2-aml-rg/providers/Microsoft.Network/networkSecurityGroups/amlakscunsg"
+                          },
+                          "routeTable": {
+                              "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tiger-team/providers/Microsoft.Network/routeTables/route-table-arm10"
+                          },
+                          "serviceEndpoints": [
+                              {
+                                  "service": "Microsoft.Sql",
+                                  "locations": [
+                                      "centralus"
+                                  ]
+                              },
+                              {
+                                  "service": "Microsoft.Web",
+                                  "locations": [
+                                      "*"
+                                  ]
+                              },
+                              {
+                                  "service": "Microsoft.KeyVault",
+                                  "locations": [
+                                      "*"
+                                  ]
+                              },
+                              {
+                                  "service": "Microsoft.Storage",
+                                  "locations": [
+                                      "centralus",
+                                      "eastus2"
+                                  ]
+                              },
+                              {
+                                  "service": "Microsoft.CognitiveServices",
+                                  "locations": [
+                                      "*"
+                                  ]
+                              },
+                              {
+                                  "service": "Microsoft.AzureCosmosDB",
+                                  "locations": [
+                                      "*"
+                                  ]
+                              },
+                              {
+                                  "service": "Microsoft.ServiceBus",
+                                  "locations": [
+                                      "*"
+                                  ]
+                              }
+                          ],
+                          "delegations": [
+                              {
+                                  "name": "dlg-flippity-flop-sql-mi-server2-pairtest1",
+                                  "properties": {
+                                      "serviceName": "Microsoft.Sql/managedInstances"
+                                  }
+                              }
+                          ],
+                          "privateEndpointNetworkPolicies": "Enabled",
+                          "privateLinkServiceNetworkPolicies": "Enabled"
+                      }
+                  }
+              ],
+              "virtualNetworkPeerings": [],
+              "enableDdosProtection": false
+          }
+      },
+      {
+          "type": "Microsoft.Network/virtualNetworks/subnets",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-aml-is-centralus-vnet01/amlwscuaks01",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/virtualNetworks', 'gs-nprod-aml-is-centralus-vnet01')]"
+          ],
+          "properties": {
+              "addressPrefix": "10.9.1.0/24",
+              "networkSecurityGroup": {
+                  "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tt2-aml-rg/providers/Microsoft.Network/networkSecurityGroups/amlakscunsg"
+              },
+              "serviceEndpoints": [
+                  {
+                      "service": "Microsoft.Storage",
+                      "locations": [
+                          "centralus",
+                          "eastus2"
+                      ]
+                  },
+                  {
+                      "service": "Microsoft.ContainerRegistry",
+                      "locations": [
+                          "*"
+                      ]
+                  },
+                  {
+                      "service": "Microsoft.KeyVault",
+                      "locations": [
+                          "*"
+                      ]
+                  }
+              ],
+              "delegations": [],
+              "privateEndpointNetworkPolicies": "Enabled",
+              "privateLinkServiceNetworkPolicies": "Enabled"
+          }
+      },
+      {
+          "type": "Microsoft.Network/virtualNetworks/subnets",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-aml-is-centralus-vnet01/amlwscuaks02",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/virtualNetworks', 'gs-nprod-aml-is-centralus-vnet01')]"
+          ],
+          "properties": {
+              "addressPrefix": "10.9.2.0/24",
+              "networkSecurityGroup": {
+                  "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tt2-aml-rg/providers/Microsoft.Network/networkSecurityGroups/amlakscunsg"
+              },
+              "serviceEndpoints": [
+                  {
+                      "service": "Microsoft.Storage",
+                      "locations": [
+                          "centralus",
+                          "eastus2"
+                      ]
+                  },
+                  {
+                      "service": "Microsoft.ContainerRegistry",
+                      "locations": [
+                          "*"
+                      ]
+                  },
+                  {
+                      "service": "Microsoft.KeyVault",
+                      "locations": [
+                          "*"
+                      ]
+                  }
+              ],
+              "delegations": [],
+              "privateEndpointNetworkPolicies": "Enabled",
+              "privateLinkServiceNetworkPolicies": "Enabled"
+          }
+      },
+      {
+          "type": "Microsoft.Network/virtualNetworks/subnets",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-aml-is-centralus-vnet01/amlwscuaks03",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/virtualNetworks', 'gs-nprod-aml-is-centralus-vnet01')]"
+          ],
+          "properties": {
+              "addressPrefix": "10.9.3.0/24",
+              "networkSecurityGroup": {
+                  "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tt2-aml-rg/providers/Microsoft.Network/networkSecurityGroups/amlakscunsg"
+              },
+              "serviceEndpoints": [
+                  {
+                      "service": "Microsoft.Storage",
+                      "locations": [
+                          "centralus",
+                          "eastus2"
+                      ]
+                  },
+                  {
+                      "service": "Microsoft.ContainerRegistry",
+                      "locations": [
+                          "*"
+                      ]
+                  },
+                  {
+                      "service": "Microsoft.KeyVault",
+                      "locations": [
+                          "*"
+                      ]
+                  }
+              ],
+              "delegations": [],
+              "privateEndpointNetworkPolicies": "Enabled",
+              "privateLinkServiceNetworkPolicies": "Enabled"
+          }
+      },
+      {
+          "type": "Microsoft.Network/virtualNetworks/subnets",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-aml-is-centralus-vnet01/db01",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/virtualNetworks', 'gs-nprod-aml-is-centralus-vnet01')]"
+          ],
+          "properties": {
+              "addressPrefix": "10.217.212.192/27",
+              "networkSecurityGroup": {
+                  "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tt2-aml-rg/providers/Microsoft.Network/networkSecurityGroups/amlakscunsg"
+              },
+              "routeTable": {
+                  "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tiger-team/providers/Microsoft.Network/routeTables/route-table-arm10"
+              },
+              "serviceEndpoints": [
+                  {
+                      "service": "Microsoft.Sql",
+                      "locations": [
+                          "centralus"
+                      ]
+                  },
+                  {
+                      "service": "Microsoft.Web",
+                      "locations": [
+                          "*"
+                      ]
+                  },
+                  {
+                      "service": "Microsoft.KeyVault",
+                      "locations": [
+                          "*"
+                      ]
+                  },
+                  {
+                      "service": "Microsoft.Storage",
+                      "locations": [
+                          "centralus",
+                          "eastus2"
+                      ]
+                  },
+                  {
+                      "service": "Microsoft.CognitiveServices",
+                      "locations": [
+                          "*"
+                      ]
+                  },
+                  {
+                      "service": "Microsoft.AzureCosmosDB",
+                      "locations": [
+                          "*"
+                      ]
+                  },
+                  {
+                      "service": "Microsoft.ServiceBus",
+                      "locations": [
+                          "*"
+                      ]
+                  }
+              ],
+              "delegations": [
+                  {
+                      "name": "dlg-flippity-flop-sql-mi-server2-pairtest1",
+                      "properties": {
+                          "serviceName": "Microsoft.Sql/managedInstances"
+                      }
+                  }
+              ],
+              "privateEndpointNetworkPolicies": "Enabled",
+              "privateLinkServiceNetworkPolicies": "Enabled"
+          }
+      }
+  ]
+}

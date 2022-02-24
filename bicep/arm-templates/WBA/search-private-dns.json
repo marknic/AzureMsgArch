@@ -1,0 +1,597 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "variables": {},
+  "resources": [
+      {
+          "type": "Microsoft.Network/privateDnsZones",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net",
+          "location": "global",
+          "tags": {
+              "CostCenter": "Project LEAP 5001",
+              "Department": "Cloud COE",
+              "EnvType": "Production",
+              "LegalSubEntity": "Walgreen Co",
+              "Sensitivity": "Sensitive",
+              "SenType": "Not Applicable",
+              "SubDivision": "Global Cloud & Platform Service",
+              "CostCode": "1000608660"
+          },
+          "properties": {
+              "maxNumberOfRecordSets": 25000,
+              "maxNumberOfVirtualNetworkLinks": 1000,
+              "maxNumberOfVirtualNetworkLinksWithRegistration": 100,
+              "numberOfRecordSets": 32,
+              "numberOfVirtualNetworkLinks": 2,
+              "numberOfVirtualNetworkLinksWithRegistration": 0,
+              "provisioningState": "Succeeded"
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/apatest",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.36"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cg-default-test",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.40"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cg-dns-test",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.36"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cg-highdensity-test",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.39"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cg-keyrotation-test",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.40"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cognitivesearch-demo",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.38"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cognitivesearch-pr-cv",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.36"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cognitivesearch-pr-cv2",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.36"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cs-am-test",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.36"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cs-kr-final",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.43"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cs-lsm-sql-nprod",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.43"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cv-cs-highdensity-v4",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.41"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cv-cs-keyrotation-v4",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.39"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cv-cs-keyrotation-v5",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.40"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cv-cs-nprod2",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.44"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cv-cs-nprod3",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.44"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cv-cs-nprod4",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.47"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cv-cs-nprod5",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.38"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cv-cs-pr",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.40"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cv-cs-pr-v2",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.41"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cv-keyrotation",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.38"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cv-key-rotation",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.38"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cv-key-rotation2",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.43"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cv-keyrotation-test",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.36"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cv-keyrotation-v2",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.39"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cv-keyrotation-v3",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.41"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cv-keyrotation-v4",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.43"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/cv-kr-test",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.41"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/jlh-super-cool-search",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.39"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/lsm-cv-cs-nprod-cosmos1",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.42"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/A",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/ultimateapatest",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "aRecords": [
+                  {
+                      "ipv4Address": "10.217.211.39"
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/SOA",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/@",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "properties": {
+              "ttl": 3600,
+              "soaRecord": {
+                  "email": "azureprivatedns-host.microsoft.com",
+                  "expireTime": 2419200,
+                  "host": "azureprivatedns.net",
+                  "minimumTtl": 10,
+                  "refreshTime": 3600,
+                  "retryTime": 300,
+                  "serialNumber": 1
+              }
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/4epqcpburd2be",
+          "location": "global",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "tags": {
+              "CostCenter": "Project LEAP 5001",
+              "Department": "Cloud COE",
+              "EnvType": "Production",
+              "LegalSubEntity": "Walgreen Co",
+              "Sensitivity": "Sensitive",
+              "SenType": "Not Applicable",
+              "SubDivision": "Global Cloud & Platform Service"
+          },
+          "properties": {
+              "registrationEnabled": false,
+              "virtualNetwork": {
+                  "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/gs-nprod-cloudplatforms-sen-eastus2-vnet01-rg/providers/Microsoft.Network/virtualNetworks/gs-nprod-cloudplatforms-sen-eastus2-vnet01"
+              }
+          }
+      },
+      {
+          "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+          "apiVersion": "2018-09-01",
+          "name": "privatelink.search.windows.net/tigerteam-naples-link",
+          "location": "global",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.search.windows.net')]"
+          ],
+          "tags": {
+              "CostCenter": "Project LEAP 5001",
+              "Department": "Cloud COE",
+              "EnvType": "Production",
+              "LegalSubEntity": "Walgreen Co",
+              "Sensitivity": "Sensitive",
+              "SenType": "Not Applicable",
+              "SubDivision": "Global Cloud & Platform Service"
+          },
+          "properties": {
+              "registrationEnabled": false,
+              "virtualNetwork": {
+                  "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tigerteam-naples/providers/Microsoft.Network/virtualNetworks/key-valut-tt-naples-virtual-network"
+              }
+          }
+      }
+  ]
+}

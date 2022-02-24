@@ -1,0 +1,266 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "variables": {},
+  "resources": [
+      {
+          "type": "Microsoft.EventHub/namespaces",
+          "apiVersion": "2021-01-01-preview",
+          "name": "eh2-saj-inputtest",
+          "location": "Central US",
+          "tags": {
+              "LegalSubEntity": "Walgreen Co",
+              "SubDivision": "Global Cloud & Platform Service",
+              "Department": "Cloud COE",
+              "CostCenter": "Project LEAP 5001",
+              "EnvType": "Non-Production",
+              "Sensitivity": "Non-Sensitive",
+              "SenType": "Not Applicable",
+              "CostCode": "1000608660"
+          },
+          "sku": {
+              "name": "Standard",
+              "tier": "Standard",
+              "capacity": 1
+          },
+          "properties": {
+              "zoneRedundant": false,
+              "isAutoInflateEnabled": false,
+              "maximumThroughputUnits": 0,
+              "kafkaEnabled": true
+          }
+      },
+      {
+          "type": "Microsoft.EventHub/namespaces/AuthorizationRules",
+          "apiVersion": "2021-01-01-preview",
+          "name": "eh2-saj-inputtest/RootManageSharedAccessKey",
+          "location": "Central US",
+          "dependsOn": [
+              "[resourceId('Microsoft.EventHub/namespaces', 'eh2-saj-inputtest')]"
+          ],
+          "properties": {
+              "rights": [
+                  "Listen",
+                  "Manage",
+                  "Send"
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.EventHub/namespaces/eventhubs",
+          "apiVersion": "2021-01-01-preview",
+          "name": "eh2-saj-inputtest/eh2-saj-inputtest",
+          "location": "Central US",
+          "dependsOn": [
+              "[resourceId('Microsoft.EventHub/namespaces', 'eh2-saj-inputtest')]"
+          ],
+          "properties": {
+              "messageRetentionInDays": 1,
+              "partitionCount": 1,
+              "status": "Active"
+          }
+      },
+      {
+          "type": "Microsoft.EventHub/namespaces/ipfilterrules",
+          "apiVersion": "2018-01-01-preview",
+          "name": "eh2-saj-inputtest/0270723f-29ea-4064-bd66-eb06fa7776ad",
+          "location": "Central US",
+          "dependsOn": [
+              "[resourceId('Microsoft.EventHub/namespaces', 'eh2-saj-inputtest')]"
+          ],
+          "properties": {
+              "ipMask": "204.15.116.0/22",
+              "action": "Accept",
+              "filterName": "0270723f-29ea-4064-bd66-eb06fa7776ad"
+          }
+      },
+      {
+          "type": "Microsoft.EventHub/namespaces/ipfilterrules",
+          "apiVersion": "2018-01-01-preview",
+          "name": "eh2-saj-inputtest/0b49d685-3d69-4d3b-a1c5-d5347b0b2cb0",
+          "location": "Central US",
+          "dependsOn": [
+              "[resourceId('Microsoft.EventHub/namespaces', 'eh2-saj-inputtest')]"
+          ],
+          "properties": {
+              "ipMask": "52.230.220.128",
+              "action": "Accept",
+              "filterName": "0b49d685-3d69-4d3b-a1c5-d5347b0b2cb0"
+          }
+      },
+      {
+          "type": "Microsoft.EventHub/namespaces/ipfilterrules",
+          "apiVersion": "2018-01-01-preview",
+          "name": "eh2-saj-inputtest/2f995715-d538-49a3-b3d8-6212c04ab80f",
+          "location": "Central US",
+          "dependsOn": [
+              "[resourceId('Microsoft.EventHub/namespaces', 'eh2-saj-inputtest')]"
+          ],
+          "properties": {
+              "ipMask": "209.65.11.0/24",
+              "action": "Accept",
+              "filterName": "2f995715-d538-49a3-b3d8-6212c04ab80f"
+          }
+      },
+      {
+          "type": "Microsoft.EventHub/namespaces/ipfilterrules",
+          "apiVersion": "2018-01-01-preview",
+          "name": "eh2-saj-inputtest/9b1b8777-bb7c-4e32-9229-aef12b341fa5",
+          "location": "Central US",
+          "dependsOn": [
+              "[resourceId('Microsoft.EventHub/namespaces', 'eh2-saj-inputtest')]"
+          ],
+          "properties": {
+              "ipMask": "63.239.17.0/24",
+              "action": "Accept",
+              "filterName": "9b1b8777-bb7c-4e32-9229-aef12b341fa5"
+          }
+      },
+      {
+          "type": "Microsoft.EventHub/namespaces/ipfilterrules",
+          "apiVersion": "2018-01-01-preview",
+          "name": "eh2-saj-inputtest/bb96df1e-17a5-4c4d-8773-0ea594f280c1",
+          "location": "Central US",
+          "dependsOn": [
+              "[resourceId('Microsoft.EventHub/namespaces', 'eh2-saj-inputtest')]"
+          ],
+          "properties": {
+              "ipMask": "63.73.199.0/24",
+              "action": "Accept",
+              "filterName": "bb96df1e-17a5-4c4d-8773-0ea594f280c1"
+          }
+      },
+      {
+          "type": "Microsoft.EventHub/namespaces/ipfilterrules",
+          "apiVersion": "2018-01-01-preview",
+          "name": "eh2-saj-inputtest/d09ea1b1-96d5-4c1b-adee-0cb92579aaa1",
+          "location": "Central US",
+          "dependsOn": [
+              "[resourceId('Microsoft.EventHub/namespaces', 'eh2-saj-inputtest')]"
+          ],
+          "properties": {
+              "ipMask": "52.155.224.148",
+              "action": "Accept",
+              "filterName": "d09ea1b1-96d5-4c1b-adee-0cb92579aaa1"
+          }
+      },
+      {
+          "type": "Microsoft.EventHub/namespaces/ipfilterrules",
+          "apiVersion": "2018-01-01-preview",
+          "name": "eh2-saj-inputtest/d28b3879-4377-456e-bb88-4f16544723df",
+          "location": "Central US",
+          "dependsOn": [
+              "[resourceId('Microsoft.EventHub/namespaces', 'eh2-saj-inputtest')]"
+          ],
+          "properties": {
+              "ipMask": "51.105.144.11",
+              "action": "Accept",
+              "filterName": "d28b3879-4377-456e-bb88-4f16544723df"
+          }
+      },
+      {
+          "type": "Microsoft.EventHub/namespaces/ipfilterrules",
+          "apiVersion": "2018-01-01-preview",
+          "name": "eh2-saj-inputtest/dd7f3487-0d71-4bb1-aa81-46e4d0bdb01f",
+          "location": "Central US",
+          "dependsOn": [
+              "[resourceId('Microsoft.EventHub/namespaces', 'eh2-saj-inputtest')]"
+          ],
+          "properties": {
+              "ipMask": "40.65.233.76",
+              "action": "Accept",
+              "filterName": "dd7f3487-0d71-4bb1-aa81-46e4d0bdb01f"
+          }
+      },
+      {
+          "type": "Microsoft.EventHub/namespaces/networkRuleSets",
+          "apiVersion": "2021-01-01-preview",
+          "name": "eh2-saj-inputtest/default",
+          "location": "Central US",
+          "dependsOn": [
+              "[resourceId('Microsoft.EventHub/namespaces', 'eh2-saj-inputtest')]"
+          ],
+          "properties": {
+              "defaultAction": "Deny",
+              "virtualNetworkRules": [
+                  {
+                      "subnet": {
+                          "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourcegroups/gs-nprod-cloudplatforms-sen-eastus2-vnet01-rg/providers/Microsoft.Network/virtualNetworks/gs-nprod-cloudplatforms-sen-eastus2-vnet01/subnets/app"
+                      },
+                      "ignoreMissingVnetServiceEndpoint": false
+                  }
+              ],
+              "ipRules": [
+                  {
+                      "ipMask": "63.73.199.0/24",
+                      "action": "Allow"
+                  },
+                  {
+                      "ipMask": "63.239.17.0/24",
+                      "action": "Allow"
+                  },
+                  {
+                      "ipMask": "204.15.116.0/22",
+                      "action": "Allow"
+                  },
+                  {
+                      "ipMask": "209.65.11.0/24",
+                      "action": "Allow"
+                  },
+                  {
+                      "ipMask": "52.230.220.128",
+                      "action": "Allow"
+                  },
+                  {
+                      "ipMask": "40.65.233.76",
+                      "action": "Allow"
+                  },
+                  {
+                      "ipMask": "52.155.224.148",
+                      "action": "Allow"
+                  },
+                  {
+                      "ipMask": "51.105.144.11",
+                      "action": "Allow"
+                  }
+              ],
+              "trustedServiceAccessEnabled": true
+          }
+      },
+      {
+          "type": "Microsoft.EventHub/namespaces/virtualnetworkrules",
+          "apiVersion": "2018-01-01-preview",
+          "name": "eh2-saj-inputtest/96a4f83f-9a81-4321-b8a6-1e198ca1fb31-gs-nprod-cloudplatforms-sen-eastus2-vnet01-rg-gs-nprod-cloudplatforms-sen-eastus2-vnet01-app",
+          "location": "Central US",
+          "dependsOn": [
+              "[resourceId('Microsoft.EventHub/namespaces', 'eh2-saj-inputtest')]"
+          ],
+          "properties": {
+              "virtualNetworkSubnetId": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourcegroups/gs-nprod-cloudplatforms-sen-eastus2-vnet01-rg/providers/Microsoft.Network/virtualNetworks/gs-nprod-cloudplatforms-sen-eastus2-vnet01/subnets/app"
+          }
+      },
+      {
+          "type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
+          "apiVersion": "2021-01-01-preview",
+          "name": "eh2-saj-inputtest/eh2-saj-inputtest/$Default",
+          "location": "Central US",
+          "dependsOn": [
+              "[resourceId('Microsoft.EventHub/namespaces/eventhubs', 'eh2-saj-inputtest', 'eh2-saj-inputtest')]",
+              "[resourceId('Microsoft.EventHub/namespaces', 'eh2-saj-inputtest')]"
+          ],
+          "properties": {}
+      },
+      {
+          "type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
+          "apiVersion": "2021-01-01-preview",
+          "name": "eh2-saj-inputtest/eh2-saj-inputtest/asa",
+          "location": "Central US",
+          "dependsOn": [
+              "[resourceId('Microsoft.EventHub/namespaces/eventhubs', 'eh2-saj-inputtest', 'eh2-saj-inputtest')]",
+              "[resourceId('Microsoft.EventHub/namespaces', 'eh2-saj-inputtest')]"
+          ],
+          "properties": {}
+      }
+  ]
+}

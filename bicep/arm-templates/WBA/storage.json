@@ -1,0 +1,445 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "variables": {},
+  "resources": [
+      {
+          "type": "Microsoft.Storage/storageAccounts",
+          "apiVersion": "2021-04-01",
+          "name": "tigerteam02amlstrg11",
+          "location": "eastus2",
+          "tags": {
+              "DeptName": "Infrastructure",
+              "LOB": "Infrastructure",
+              "Deployer": "Rajasekhar.Padala@boots.co.uk",
+              "DeployDate": "2020-02-19",
+              "Sensitivity": "Non-Sensitive",
+              "SenType": "Not Applicable",
+              "EnvType": "Non-Production",
+              "LegalSubEntity": "Walgreen Co",
+              "SubDivision": "Global Cloud & Platform Service",
+              "Department": "Cloud COE",
+              "CostCenter": "Project LEAP 5001"
+          },
+          "sku": {
+              "name": "Standard_LRS",
+              "tier": "Standard"
+          },
+          "kind": "StorageV2",
+          "properties": {
+              "networkAcls": {
+                  "bypass": "AzureServices",
+                  "virtualNetworkRules": [
+                      {
+                          "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/gs-nprod-cloudplatforms-sen-eastus2-vnet01-rg/providers/Microsoft.Network/virtualNetworks/gs-nprod-cloudplatforms-sen-eastus2-vnet01/subnets/AKS01",
+                          "action": "Allow",
+                          "state": "Succeeded"
+                      },
+                      {
+                          "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/gs-nprod-cloudplatforms-sen-eastus2-vnet01-rg/providers/Microsoft.Network/virtualNetworks/gs-nprod-cloudplatforms-sen-eastus2-vnet01/subnets/AKS02",
+                          "action": "Allow",
+                          "state": "Succeeded"
+                      },
+                      {
+                          "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/gs-nprod-cloudplatforms-sen-eastus2-vnet01-rg/providers/Microsoft.Network/virtualNetworks/gs-nprod-cloudplatforms-sen-eastus2-vnet01/subnets/App",
+                          "action": "Allow",
+                          "state": "Succeeded"
+                      },
+                      {
+                          "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/gs-nprod-cloudplatforms-sen-eastus2-vnet01-rg/providers/Microsoft.Network/virtualNetworks/gs-nprod-cloudplatforms-sen-eastus2-vnet01/subnets/AppConf",
+                          "action": "Allow",
+                          "state": "Succeeded"
+                      },
+                      {
+                          "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/gs-nprod-cloudplatforms-sen-eastus2-vnet01-rg/providers/Microsoft.Network/virtualNetworks/gs-nprod-cloudplatforms-sen-eastus2-vnet01/subnets/web",
+                          "action": "Allow",
+                          "state": "Succeeded"
+                      },
+                      {
+                          "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tiger-team02-aml-rg01/providers/Microsoft.Network/virtualNetworks/gs-nprod-aml-isolated-eastus2-vnet02/subnets/amlaibatch02",
+                          "action": "Allow",
+                          "state": "Succeeded"
+                      },
+                      {
+                          "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tiger-team02-aml-rg01/providers/Microsoft.Network/virtualNetworks/gs-nprod-aml-isolated-eastus2-vnet02/subnets/amlaks02",
+                          "action": "Allow",
+                          "state": "Succeeded"
+                      },
+                      {
+                          "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tiger-team02-aml-rg01/providers/Microsoft.Network/virtualNetworks/gs-nprod-aml-isolated-eastus2-vnet02/subnets/amlakscni02",
+                          "action": "Allow",
+                          "state": "Succeeded"
+                      },
+                      {
+                          "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tiger-team02-aml-rg01/providers/Microsoft.Network/virtualNetworks/gs-nprod-aml-isolated-eastus2-vnet02/subnets/amlakscompute02",
+                          "action": "Allow",
+                          "state": "Succeeded"
+                      },
+                      {
+                          "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tiger-team02-aml-rg01/providers/Microsoft.Network/virtualNetworks/gs-nprod-aml-isolated-eastus2-vnet02/subnets/app",
+                          "action": "Allow",
+                          "state": "Succeeded"
+                      },
+                      {
+                          "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tiger-team02-aml-rg01/providers/Microsoft.Network/virtualNetworks/gs-nprod-aml-isolated-eastus2-vnet03/subnets/amlaks02",
+                          "action": "Allow",
+                          "state": "Succeeded"
+                      },
+                      {
+                          "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tt2-aml-rg/providers/Microsoft.Network/virtualNetworks/gs-nprod-amlws-isolated-eastus2-vnet02/subnets/amlwsaks01",
+                          "action": "Allow",
+                          "state": "Succeeded"
+                      },
+                      {
+                          "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tt2-aml-rg/providers/Microsoft.Network/virtualNetworks/gs-nprod-amlws-isolated-eastus2-vnet02/subnets/amlwsaks02",
+                          "action": "Allow",
+                          "state": "Succeeded"
+                      },
+                      {
+                          "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tt2-aml-rg/providers/Microsoft.Network/virtualNetworks/gs-nprod-amlws-isolated-eastus2-vnet02/subnets/amlwsaks03",
+                          "action": "Allow",
+                          "state": "Succeeded"
+                      },
+                      {
+                          "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tt2-aml-rg01/providers/Microsoft.Network/virtualNetworks/gs-nprod-amltest-isolated-eastus2-vnet001/subnets/amltestsub01",
+                          "action": "Allow",
+                          "state": "Succeeded"
+                      }
+                  ],
+                  "ipRules": [
+                      {
+                          "value": "204.15.117.96/30",
+                          "action": "Allow"
+                      },
+                      {
+                          "value": "204.15.117.100/30",
+                          "action": "Allow"
+                      },
+                      {
+                          "value": "204.15.117.104/29",
+                          "action": "Allow"
+                      },
+                      {
+                          "value": "63.73.199.0/24",
+                          "action": "Allow"
+                      },
+                      {
+                          "value": "63.239.17.0/24",
+                          "action": "Allow"
+                      },
+                      {
+                          "value": "204.15.116.0/22",
+                          "action": "Allow"
+                      },
+                      {
+                          "value": "209.65.11.0/24",
+                          "action": "Allow"
+                      },
+                      {
+                          "value": "52.230.220.128",
+                          "action": "Allow"
+                      },
+                      {
+                          "value": "40.65.233.76",
+                          "action": "Allow"
+                      },
+                      {
+                          "value": "52.155.224.148",
+                          "action": "Allow"
+                      },
+                      {
+                          "value": "51.105.144.11",
+                          "action": "Allow"
+                      },
+                      {
+                          "value": "86.20.58.234",
+                          "action": "Allow"
+                      },
+                      {
+                          "value": "52.177.150.158",
+                          "action": "Allow"
+                      },
+                      {
+                          "value": "37.182.165.145",
+                          "action": "Allow"
+                      }
+                  ],
+                  "defaultAction": "Deny"
+              },
+              "supportsHttpsTrafficOnly": true,
+              "encryption": {
+                  "services": {
+                      "file": {
+                          "keyType": "Account",
+                          "enabled": true
+                      },
+                      "blob": {
+                          "keyType": "Account",
+                          "enabled": true
+                      }
+                  },
+                  "keySource": "Microsoft.Storage"
+              },
+              "accessTier": "Hot"
+          }
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/blobServices",
+          "apiVersion": "2021-04-01",
+          "name": "tigerteam02amlstrg11/default",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts', 'tigerteam02amlstrg11')]"
+          ],
+          "sku": {
+              "name": "Standard_LRS",
+              "tier": "Standard"
+          },
+          "properties": {
+              "cors": {
+                  "corsRules": [
+                      {
+                          "allowedOrigins": [
+                              "https://mlworkspace.azure.ai",
+                              "https://ml.azure.com",
+                              "https://*.ml.azure.com"
+                          ],
+                          "allowedMethods": [
+                              "GET",
+                              "HEAD"
+                          ],
+                          "maxAgeInSeconds": 1800,
+                          "exposedHeaders": [
+                              "*"
+                          ],
+                          "allowedHeaders": [
+                              "*"
+                          ]
+                      }
+                  ]
+              },
+              "deleteRetentionPolicy": {
+                  "enabled": false
+              }
+          }
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/fileServices",
+          "apiVersion": "2021-04-01",
+          "name": "tigerteam02amlstrg11/default",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts', 'tigerteam02amlstrg11')]"
+          ],
+          "sku": {
+              "name": "Standard_LRS",
+              "tier": "Standard"
+          },
+          "properties": {
+              "protocolSettings": {
+                  "smb": {}
+              },
+              "cors": {
+                  "corsRules": []
+              }
+          }
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/queueServices",
+          "apiVersion": "2021-04-01",
+          "name": "tigerteam02amlstrg11/default",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts', 'tigerteam02amlstrg11')]"
+          ],
+          "properties": {
+              "cors": {
+                  "corsRules": []
+              }
+          }
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/tableServices",
+          "apiVersion": "2021-04-01",
+          "name": "tigerteam02amlstrg11/default",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts', 'tigerteam02amlstrg11')]"
+          ],
+          "properties": {
+              "cors": {
+                  "corsRules": []
+              }
+          }
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+          "apiVersion": "2021-04-01",
+          "name": "tigerteam02amlstrg11/default/apatest",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts/blobServices', 'tigerteam02amlstrg11', 'default')]",
+              "[resourceId('Microsoft.Storage/storageAccounts', 'tigerteam02amlstrg11')]"
+          ],
+          "properties": {
+              "defaultEncryptionScope": "$account-encryption-key",
+              "denyEncryptionScopeOverride": false,
+              "publicAccess": "Container"
+          }
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+          "apiVersion": "2021-04-01",
+          "name": "tigerteam02amlstrg11/default/azureml",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts/blobServices', 'tigerteam02amlstrg11', 'default')]",
+              "[resourceId('Microsoft.Storage/storageAccounts', 'tigerteam02amlstrg11')]"
+          ],
+          "properties": {
+              "defaultEncryptionScope": "$account-encryption-key",
+              "denyEncryptionScopeOverride": false,
+              "publicAccess": "None"
+          }
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+          "apiVersion": "2021-04-01",
+          "name": "tigerteam02amlstrg11/default/azureml-blobstore-3deafd34-2a11-4b67-a967-3bee36a0bb86",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts/blobServices', 'tigerteam02amlstrg11', 'default')]",
+              "[resourceId('Microsoft.Storage/storageAccounts', 'tigerteam02amlstrg11')]"
+          ],
+          "properties": {
+              "defaultEncryptionScope": "$account-encryption-key",
+              "denyEncryptionScopeOverride": false,
+              "publicAccess": "None"
+          }
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+          "apiVersion": "2021-04-01",
+          "name": "tigerteam02amlstrg11/default/azureml-blobstore-8bc7dc02-cf8a-4268-bb67-742811f4b93f",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts/blobServices', 'tigerteam02amlstrg11', 'default')]",
+              "[resourceId('Microsoft.Storage/storageAccounts', 'tigerteam02amlstrg11')]"
+          ],
+          "properties": {
+              "defaultEncryptionScope": "$account-encryption-key",
+              "denyEncryptionScopeOverride": false,
+              "publicAccess": "None"
+          }
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+          "apiVersion": "2021-04-01",
+          "name": "tigerteam02amlstrg11/default/azureml-blobstore-e0778e7b-09cb-4787-95d2-4359ce494a81",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts/blobServices', 'tigerteam02amlstrg11', 'default')]",
+              "[resourceId('Microsoft.Storage/storageAccounts', 'tigerteam02amlstrg11')]"
+          ],
+          "properties": {
+              "defaultEncryptionScope": "$account-encryption-key",
+              "denyEncryptionScopeOverride": false,
+              "publicAccess": "None"
+          }
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+          "apiVersion": "2021-04-01",
+          "name": "tigerteam02amlstrg11/default/azureml-metrics",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts/blobServices', 'tigerteam02amlstrg11', 'default')]",
+              "[resourceId('Microsoft.Storage/storageAccounts', 'tigerteam02amlstrg11')]"
+          ],
+          "properties": {
+              "defaultEncryptionScope": "$account-encryption-key",
+              "denyEncryptionScopeOverride": false,
+              "publicAccess": "None"
+          }
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+          "apiVersion": "2021-04-01",
+          "name": "tigerteam02amlstrg11/default/modeldata",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts/blobServices', 'tigerteam02amlstrg11', 'default')]",
+              "[resourceId('Microsoft.Storage/storageAccounts', 'tigerteam02amlstrg11')]"
+          ],
+          "properties": {
+              "defaultEncryptionScope": "$account-encryption-key",
+              "denyEncryptionScopeOverride": false,
+              "publicAccess": "None"
+          }
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+          "apiVersion": "2021-04-01",
+          "name": "tigerteam02amlstrg11/default/revisions",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts/blobServices', 'tigerteam02amlstrg11', 'default')]",
+              "[resourceId('Microsoft.Storage/storageAccounts', 'tigerteam02amlstrg11')]"
+          ],
+          "properties": {
+              "defaultEncryptionScope": "$account-encryption-key",
+              "denyEncryptionScopeOverride": false,
+              "publicAccess": "None"
+          }
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+          "apiVersion": "2021-04-01",
+          "name": "tigerteam02amlstrg11/default/snapshots",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts/blobServices', 'tigerteam02amlstrg11', 'default')]",
+              "[resourceId('Microsoft.Storage/storageAccounts', 'tigerteam02amlstrg11')]"
+          ],
+          "properties": {
+              "defaultEncryptionScope": "$account-encryption-key",
+              "denyEncryptionScopeOverride": false,
+              "publicAccess": "None"
+          }
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+          "apiVersion": "2021-04-01",
+          "name": "tigerteam02amlstrg11/default/snapshotzips",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts/blobServices', 'tigerteam02amlstrg11', 'default')]",
+              "[resourceId('Microsoft.Storage/storageAccounts', 'tigerteam02amlstrg11')]"
+          ],
+          "properties": {
+              "defaultEncryptionScope": "$account-encryption-key",
+              "denyEncryptionScopeOverride": false,
+              "publicAccess": "None"
+          }
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/fileServices/shares",
+          "apiVersion": "2021-04-01",
+          "name": "tigerteam02amlstrg11/default/automl-1db9c1af-95fd-44a3-89d0-13a0c7dda87f",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts/fileServices', 'tigerteam02amlstrg11', 'default')]",
+              "[resourceId('Microsoft.Storage/storageAccounts', 'tigerteam02amlstrg11')]"
+          ],
+          "properties": {
+              "accessTier": "TransactionOptimized",
+              "shareQuota": 5120,
+              "enabledProtocols": "SMB"
+          }
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/tableServices/tables",
+          "apiVersion": "2021-04-01",
+          "name": "tigerteam02amlstrg11/default/asasqldwbde6fd6c5b1f4d5b9cb8fc7d3be75aba",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts/tableServices', 'tigerteam02amlstrg11', 'default')]",
+              "[resourceId('Microsoft.Storage/storageAccounts', 'tigerteam02amlstrg11')]"
+          ]
+      },
+      {
+          "type": "Microsoft.Storage/storageAccounts/tableServices/tables",
+          "apiVersion": "2021-04-01",
+          "name": "tigerteam02amlstrg11/default/asasqldwcheckpointbde6fd6c5b1f4d5b9cb8fc7d3be75aba",
+          "dependsOn": [
+              "[resourceId('Microsoft.Storage/storageAccounts/tableServices', 'tigerteam02amlstrg11', 'default')]",
+              "[resourceId('Microsoft.Storage/storageAccounts', 'tigerteam02amlstrg11')]"
+          ]
+      }
+  ]
+}

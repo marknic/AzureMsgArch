@@ -1,0 +1,215 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "variables": {},
+  "resources": [
+      {
+          "type": "Microsoft.Web/sites",
+          "apiVersion": "2018-11-01",
+          "name": "jlh-func-test-03",
+          "location": "East US 2",
+          "tags": {
+              "CostCenter": "Project LEAP 5001",
+              "Department": "Cloud COE",
+              "EnvType": "Non-Production",
+              "LegalSubEntity": "Walgreen Co",
+              "Sensitivity": "Non-Sensitive",
+              "SenType": "Not Applicable",
+              "SubDivision": "Global Cloud & Platform Service"
+          },
+          "kind": "functionapp",
+          "identity": {
+              "principalId": "3bc609f4-f701-4dba-9ce5-261e15630d43",
+              "tenantId": "92cb778e-8ba7-4f34-a011-4ba6e7366996",
+              "type": "SystemAssigned"
+          },
+          "properties": {
+              "enabled": true,
+              "hostNameSslStates": [
+                  {
+                      "name": "jlh-func-test-03.azurewebsites.net",
+                      "sslState": "Disabled",
+                      "hostType": "Standard"
+                  },
+                  {
+                      "name": "jlh-func-test-03.scm.azurewebsites.net",
+                      "sslState": "Disabled",
+                      "hostType": "Repository"
+                  }
+              ],
+              "serverFarmId": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tiger-team02-aml-rg01/providers/Microsoft.Web/serverfarms/ASP-tigerteam02amlrg01-aa6f",
+              "reserved": false,
+              "isXenon": false,
+              "hyperV": false,
+              "siteConfig": {
+                  "numberOfWorkers": -1,
+                  "alwaysOn": false,
+                  "http20Enabled": false
+              },
+              "scmSiteAlsoStopped": false,
+              "clientAffinityEnabled": false,
+              "clientCertEnabled": false,
+              "hostNamesDisabled": false,
+              "containerSize": 1536,
+              "dailyMemoryTimeQuota": 0,
+              "httpsOnly": false,
+              "redundancyMode": "None"
+          }
+      },
+      {
+          "type": "Microsoft.Web/sites/config",
+          "apiVersion": "2018-11-01",
+          "name": "jlh-func-test-03/web",
+          "location": "East US 2",
+          "dependsOn": [
+              "[resourceId('Microsoft.Web/sites', 'jlh-func-test-03')]"
+          ],
+          "tags": {
+              "CostCenter": "Project LEAP 5001",
+              "Department": "Cloud COE",
+              "EnvType": "Non-Production",
+              "LegalSubEntity": "Walgreen Co",
+              "Sensitivity": "Non-Sensitive",
+              "SenType": "Not Applicable",
+              "SubDivision": "Global Cloud & Platform Service"
+          },
+          "properties": {
+              "numberOfWorkers": -1,
+              "defaultDocuments": [
+                  "Default.htm",
+                  "Default.html",
+                  "Default.asp",
+                  "index.htm",
+                  "index.html",
+                  "iisstart.htm",
+                  "default.aspx",
+                  "index.php"
+              ],
+              "netFrameworkVersion": "v4.0",
+              "phpVersion": "5.6",
+              "requestTracingEnabled": false,
+              "remoteDebuggingEnabled": false,
+              "httpLoggingEnabled": false,
+              "logsDirectorySizeLimit": 35,
+              "detailedErrorLoggingEnabled": false,
+              "publishingUsername": "$jlh-func-test-03",
+              "azureStorageAccounts": {},
+              "scmType": "None",
+              "use32BitWorkerProcess": true,
+              "webSocketsEnabled": false,
+              "alwaysOn": false,
+              "managedPipelineMode": "Integrated",
+              "virtualApplications": [
+                  {
+                      "virtualPath": "/",
+                      "physicalPath": "site\\wwwroot",
+                      "preloadEnabled": false
+                  }
+              ],
+              "loadBalancing": "LeastRequests",
+              "experiments": {
+                  "rampUpRules": []
+              },
+              "autoHealEnabled": false,
+              "cors": {
+                  "allowedOrigins": [
+                      "https://functions.azure.com",
+                      "https://functions-staging.azure.com",
+                      "https://functions-next.azure.com"
+                  ],
+                  "supportCredentials": false
+              },
+              "localMySqlEnabled": false,
+              "managedServiceIdentityId": 13617,
+              "ipSecurityRestrictions": [
+                  {
+                      "ipAddress": "Any",
+                      "action": "Allow",
+                      "priority": 1,
+                      "name": "Allow all",
+                      "description": "Allow all access"
+                  }
+              ],
+              "scmIpSecurityRestrictions": [
+                  {
+                      "ipAddress": "Any",
+                      "action": "Allow",
+                      "priority": 1,
+                      "name": "Allow all",
+                      "description": "Allow all access"
+                  }
+              ],
+              "scmIpSecurityRestrictionsUseMain": false,
+              "http20Enabled": false,
+              "minTlsVersion": "1.2",
+              "ftpsState": "AllAllowed",
+              "reservedInstanceCount": 0
+          }
+      },
+      {
+          "type": "Microsoft.Web/sites/functions",
+          "apiVersion": "2018-11-01",
+          "name": "jlh-func-test-03/HttpTrigger1",
+          "location": "East US 2",
+          "dependsOn": [
+              "[resourceId('Microsoft.Web/sites', 'jlh-func-test-03')]"
+          ],
+          "properties": {
+              "script_root_path_href": "https://jlh-func-test-03.azurewebsites.net/admin/vfs/site/wwwroot/HttpTrigger1/",
+              "script_href": "https://jlh-func-test-03.azurewebsites.net/admin/vfs/site/wwwroot/HttpTrigger1/run.ps1",
+              "config_href": "https://jlh-func-test-03.azurewebsites.net/admin/vfs/site/wwwroot/HttpTrigger1/function.json",
+              "href": "https://jlh-func-test-03.azurewebsites.net/admin/functions/HttpTrigger1",
+              "config": {},
+              "test_data": "{\r\n    \"name\": \"Azure\"\r\n}\r\n"
+          }
+      },
+      {
+          "type": "Microsoft.Web/sites/functions",
+          "apiVersion": "2018-11-01",
+          "name": "jlh-func-test-03/HttpTrigger2",
+          "location": "East US 2",
+          "dependsOn": [
+              "[resourceId('Microsoft.Web/sites', 'jlh-func-test-03')]"
+          ],
+          "properties": {
+              "script_root_path_href": "https://jlh-func-test-03.azurewebsites.net/admin/vfs/site/wwwroot/HttpTrigger2/",
+              "script_href": "https://jlh-func-test-03.azurewebsites.net/admin/vfs/site/wwwroot/HttpTrigger2/run.ps1",
+              "config_href": "https://jlh-func-test-03.azurewebsites.net/admin/vfs/site/wwwroot/HttpTrigger2/function.json",
+              "href": "https://jlh-func-test-03.azurewebsites.net/admin/functions/HttpTrigger2",
+              "config": {},
+              "test_data": "{\r\n    \"name\": \"Azure\"\r\n}\r\n"
+          }
+      },
+      {
+          "type": "Microsoft.Web/sites/functions",
+          "apiVersion": "2018-11-01",
+          "name": "jlh-func-test-03/HttpTrigger3",
+          "location": "East US 2",
+          "dependsOn": [
+              "[resourceId('Microsoft.Web/sites', 'jlh-func-test-03')]"
+          ],
+          "properties": {
+              "script_root_path_href": "https://jlh-func-test-03.azurewebsites.net/admin/vfs/site/wwwroot/HttpTrigger3/",
+              "script_href": "https://jlh-func-test-03.azurewebsites.net/admin/vfs/site/wwwroot/HttpTrigger3/run.ps1",
+              "config_href": "https://jlh-func-test-03.azurewebsites.net/admin/vfs/site/wwwroot/HttpTrigger3/function.json",
+              "href": "https://jlh-func-test-03.azurewebsites.net/admin/functions/HttpTrigger3",
+              "config": {},
+              "test_data": "{\r\n    \"name\": \"Azure\"\r\n}\r\n"
+          }
+      },
+      {
+          "type": "Microsoft.Web/sites/hostNameBindings",
+          "apiVersion": "2018-11-01",
+          "name": "jlh-func-test-03/jlh-func-test-03.azurewebsites.net",
+          "location": "East US 2",
+          "dependsOn": [
+              "[resourceId('Microsoft.Web/sites', 'jlh-func-test-03')]"
+          ],
+          "properties": {
+              "siteName": "jlh-func-test-03",
+              "hostNameType": "Verified"
+          }
+      }
+  ]
+}

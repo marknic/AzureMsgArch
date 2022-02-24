@@ -17,6 +17,10 @@ param environment string = 'dev'
 @description('Resource purpose or description - for tags')
 param purpose string = 'storage'
 
+@description('Destination log workspace')
+param logWorkspaceId string
+
+
 param dateCreated string = utcNow('u')
 param location string = resourceGroup().location
 
@@ -33,6 +37,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
     Application_Type: 'web'
     publicNetworkAccessForIngestion: 'Enabled'
     publicNetworkAccessForQuery: 'Enabled'
+    WorkspaceResourceId: logWorkspaceId
   }
   tags: {
     '${resourceTagName}': resourceTagValue
@@ -43,3 +48,6 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
     dateCreated: dateCreated
   }
 }
+
+
+output instrumentationKey string = appInsights.properties.InstrumentationKey

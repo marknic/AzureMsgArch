@@ -1,0 +1,367 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "variables": {},
+  "resources": [
+      {
+          "type": "Microsoft.Network/routeTables",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt",
+          "location": "eastus2",
+          "tags": {
+              "CostCenter": "Project LEAP 5001",
+              "Department": "Cloud COE",
+              "EnvType": "Production",
+              "LegalSubEntity": "Walgreen Co",
+              "Sensitivity": "Sensitive",
+              "SenType": "Not Applicable",
+              "SubDivision": "Global Cloud & Platform Service",
+              "CostCode": "1000608660"
+          },
+          "properties": {
+              "disableBgpRoutePropagation": false,
+              "routes": [
+                  {
+                      "name": "hub-transit",
+                      "properties": {
+                          "addressPrefix": "0.0.0.0/0",
+                          "nextHopType": "VirtualAppliance",
+                          "nextHopIpAddress": "10.217.208.4",
+                          "hasBgpOverride": false
+                      }
+                  },
+                  {
+                      "name": "Allow-BatchService-Communication-Route01",
+                      "properties": {
+                          "addressPrefix": "13.77.80.138/32",
+                          "nextHopType": "Internet",
+                          "hasBgpOverride": false
+                      }
+                  },
+                  {
+                      "name": "Allow-BatchService-Communication-Route02",
+                      "properties": {
+                          "addressPrefix": "20.41.5.224/27",
+                          "nextHopType": "Internet",
+                          "hasBgpOverride": false
+                      }
+                  },
+                  {
+                      "name": "Allow-BatchService-Communication-Route03",
+                      "properties": {
+                          "addressPrefix": "40.70.147.224/27",
+                          "nextHopType": "Internet",
+                          "hasBgpOverride": false
+                      }
+                  },
+                  {
+                      "name": "Allow-BatchService-Communication-Route04",
+                      "properties": {
+                          "addressPrefix": "40.84.49.170/32",
+                          "nextHopType": "Internet",
+                          "hasBgpOverride": false
+                      }
+                  },
+                  {
+                      "name": "Allow-BatchService-Communication-Route05",
+                      "properties": {
+                          "addressPrefix": "40.84.62.82/32",
+                          "nextHopType": "Internet",
+                          "hasBgpOverride": false
+                      }
+                  },
+                  {
+                      "name": "Allow-BatchService-Communication-Route06",
+                      "properties": {
+                          "addressPrefix": "52.167.106.128/27",
+                          "nextHopType": "Internet",
+                          "hasBgpOverride": false
+                      }
+                  },
+                  {
+                      "name": "Allow-BatchService-Communication-Route07",
+                      "properties": {
+                          "addressPrefix": "104.208.144.128/27",
+                          "nextHopType": "Internet",
+                          "hasBgpOverride": false
+                      }
+                  },
+                  {
+                      "name": "Allow-BatchService-Communication-Route08",
+                      "properties": {
+                          "addressPrefix": "104.208.156.99/32",
+                          "nextHopType": "Internet",
+                          "hasBgpOverride": false
+                      }
+                  },
+                  {
+                      "name": "Allow-BatchService-Communication-Route09",
+                      "properties": {
+                          "addressPrefix": "104.208.157.18/32",
+                          "nextHopType": "Internet",
+                          "hasBgpOverride": false
+                      }
+                  },
+                  {
+                      "name": "Allow-BatchService-Communication-Route10",
+                      "properties": {
+                          "addressPrefix": "104.210.3.254/32",
+                          "nextHopType": "Internet",
+                          "hasBgpOverride": false
+                      }
+                  },
+                  {
+                      "name": "Allow-BatchService-Communication-Route11",
+                      "properties": {
+                          "addressPrefix": "137.116.33.5/32",
+                          "nextHopType": "Internet",
+                          "hasBgpOverride": false
+                      }
+                  },
+                  {
+                      "name": "Allow-BatchService-Communication-Route12",
+                      "properties": {
+                          "addressPrefix": "137.116.33.29/32",
+                          "nextHopType": "Internet",
+                          "hasBgpOverride": false
+                      }
+                  },
+                  {
+                      "name": "Allow-BatchService-Communication-Route13",
+                      "properties": {
+                          "addressPrefix": "137.116.33.71/32",
+                          "nextHopType": "Internet",
+                          "hasBgpOverride": false
+                      }
+                  },
+                  {
+                      "name": "Allow-BatchService-Communication-Route14",
+                      "properties": {
+                          "addressPrefix": "137.116.37.146/32",
+                          "nextHopType": "Internet",
+                          "hasBgpOverride": false
+                      }
+                  },
+                  {
+                      "name": "Allow-BatchService-Communication-Route15",
+                      "properties": {
+                          "addressPrefix": "137.116.46.180/32",
+                          "nextHopType": "Internet",
+                          "hasBgpOverride": false
+                      }
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/routeTables/routes",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt/Allow-BatchService-Communication-Route01",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/routeTables', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt')]"
+          ],
+          "properties": {
+              "addressPrefix": "13.77.80.138/32",
+              "nextHopType": "Internet",
+              "hasBgpOverride": false
+          }
+      },
+      {
+          "type": "Microsoft.Network/routeTables/routes",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt/Allow-BatchService-Communication-Route02",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/routeTables', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt')]"
+          ],
+          "properties": {
+              "addressPrefix": "20.41.5.224/27",
+              "nextHopType": "Internet",
+              "hasBgpOverride": false
+          }
+      },
+      {
+          "type": "Microsoft.Network/routeTables/routes",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt/Allow-BatchService-Communication-Route03",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/routeTables', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt')]"
+          ],
+          "properties": {
+              "addressPrefix": "40.70.147.224/27",
+              "nextHopType": "Internet",
+              "hasBgpOverride": false
+          }
+      },
+      {
+          "type": "Microsoft.Network/routeTables/routes",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt/Allow-BatchService-Communication-Route04",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/routeTables', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt')]"
+          ],
+          "properties": {
+              "addressPrefix": "40.84.49.170/32",
+              "nextHopType": "Internet",
+              "hasBgpOverride": false
+          }
+      },
+      {
+          "type": "Microsoft.Network/routeTables/routes",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt/Allow-BatchService-Communication-Route05",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/routeTables', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt')]"
+          ],
+          "properties": {
+              "addressPrefix": "40.84.62.82/32",
+              "nextHopType": "Internet",
+              "hasBgpOverride": false
+          }
+      },
+      {
+          "type": "Microsoft.Network/routeTables/routes",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt/Allow-BatchService-Communication-Route06",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/routeTables', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt')]"
+          ],
+          "properties": {
+              "addressPrefix": "52.167.106.128/27",
+              "nextHopType": "Internet",
+              "hasBgpOverride": false
+          }
+      },
+      {
+          "type": "Microsoft.Network/routeTables/routes",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt/Allow-BatchService-Communication-Route07",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/routeTables', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt')]"
+          ],
+          "properties": {
+              "addressPrefix": "104.208.144.128/27",
+              "nextHopType": "Internet",
+              "hasBgpOverride": false
+          }
+      },
+      {
+          "type": "Microsoft.Network/routeTables/routes",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt/Allow-BatchService-Communication-Route08",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/routeTables', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt')]"
+          ],
+          "properties": {
+              "addressPrefix": "104.208.156.99/32",
+              "nextHopType": "Internet",
+              "hasBgpOverride": false
+          }
+      },
+      {
+          "type": "Microsoft.Network/routeTables/routes",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt/Allow-BatchService-Communication-Route09",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/routeTables', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt')]"
+          ],
+          "properties": {
+              "addressPrefix": "104.208.157.18/32",
+              "nextHopType": "Internet",
+              "hasBgpOverride": false
+          }
+      },
+      {
+          "type": "Microsoft.Network/routeTables/routes",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt/Allow-BatchService-Communication-Route10",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/routeTables', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt')]"
+          ],
+          "properties": {
+              "addressPrefix": "104.210.3.254/32",
+              "nextHopType": "Internet",
+              "hasBgpOverride": false
+          }
+      },
+      {
+          "type": "Microsoft.Network/routeTables/routes",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt/Allow-BatchService-Communication-Route11",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/routeTables', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt')]"
+          ],
+          "properties": {
+              "addressPrefix": "137.116.33.5/32",
+              "nextHopType": "Internet",
+              "hasBgpOverride": false
+          }
+      },
+      {
+          "type": "Microsoft.Network/routeTables/routes",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt/Allow-BatchService-Communication-Route12",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/routeTables', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt')]"
+          ],
+          "properties": {
+              "addressPrefix": "137.116.33.29/32",
+              "nextHopType": "Internet",
+              "hasBgpOverride": false
+          }
+      },
+      {
+          "type": "Microsoft.Network/routeTables/routes",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt/Allow-BatchService-Communication-Route13",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/routeTables', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt')]"
+          ],
+          "properties": {
+              "addressPrefix": "137.116.33.71/32",
+              "nextHopType": "Internet",
+              "hasBgpOverride": false
+          }
+      },
+      {
+          "type": "Microsoft.Network/routeTables/routes",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt/Allow-BatchService-Communication-Route14",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/routeTables', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt')]"
+          ],
+          "properties": {
+              "addressPrefix": "137.116.37.146/32",
+              "nextHopType": "Internet",
+              "hasBgpOverride": false
+          }
+      },
+      {
+          "type": "Microsoft.Network/routeTables/routes",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt/Allow-BatchService-Communication-Route15",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/routeTables', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt')]"
+          ],
+          "properties": {
+              "addressPrefix": "137.116.46.180/32",
+              "nextHopType": "Internet",
+              "hasBgpOverride": false
+          }
+      },
+      {
+          "type": "Microsoft.Network/routeTables/routes",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt/hub-transit",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/routeTables', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-rt')]"
+          ],
+          "properties": {
+              "addressPrefix": "0.0.0.0/0",
+              "nextHopType": "VirtualAppliance",
+              "nextHopIpAddress": "10.217.208.4",
+              "hasBgpOverride": false
+          }
+      }
+  ]
+}

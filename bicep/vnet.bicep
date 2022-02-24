@@ -22,6 +22,10 @@ param subnets array = [
     name: 'genservices-subnet'
     subnetPrefix: '10.0.3.0/24'
   }
+  {
+    name: 'storage-subnet'
+    subnetPrefix: '10.0.3.0/24'
+  }
 ]
 
 // The following params are used for tagging

@@ -1,0 +1,1476 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "variables": {},
+  "resources": [
+      {
+          "type": "Microsoft.Network/networkSecurityGroups",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web",
+          "location": "eastus2",
+          "tags": {
+              "LegalSubEntity": "Walgreen Co",
+              "SenType": "Not Applicable",
+              "Sensitivity": "Non-Sensitive",
+              "DeptName": "Infrastructure",
+              "SubDivision": "Global Cloud & Platform Service",
+              "LOB": "Infrastructure",
+              "CostCenter": "Project LEAP 5001",
+              "Department": "Cloud COE",
+              "EnvType": "Non-Production",
+              "DeployDate": "2020-11-19 22:47:03 UTC",
+              "Deployer": "Nagamanikanta.chandrapatla@walgreens.com",
+              "LastNSGStandardsUpdate": "2021-05-17 22:41:50 UTC",
+              "NSGStandardsVersion": "2.1",
+              "CostCode": "1000608660"
+          },
+          "properties": {
+              "securityRules": [
+                  {
+                      "name": "EAPI_Inbound_Allow",
+                      "properties": {
+                          "description": "ITCS-2546",
+                          "protocol": "*",
+                          "sourcePortRange": "*",
+                          "destinationPortRange": "443",
+                          "destinationAddressPrefix": "*",
+                          "access": "Allow",
+                          "priority": 104,
+                          "direction": "Inbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [],
+                          "sourceAddressPrefixes": [
+                              "10.124.70.33",
+                              "10.124.70.154",
+                              "10.124.70.77"
+                          ],
+                          "destinationAddressPrefixes": []
+                      }
+                  },
+                  {
+                      "name": "EAPI_Outbound_Allow",
+                      "properties": {
+                          "description": "ITCS-2546",
+                          "protocol": "*",
+                          "sourcePortRange": "*",
+                          "destinationPortRange": "443",
+                          "sourceAddressPrefix": "*",
+                          "access": "Allow",
+                          "priority": 104,
+                          "direction": "Outbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [],
+                          "sourceAddressPrefixes": [],
+                          "destinationAddressPrefixes": [
+                              "10.124.70.33",
+                              "10.124.70.154"
+                          ]
+                      }
+                  },
+                  {
+                      "name": "IntraSubnet_Outbound_Allow",
+                      "properties": {
+                          "protocol": "*",
+                          "sourcePortRange": "*",
+                          "destinationPortRange": "*",
+                          "sourceAddressPrefix": "*",
+                          "destinationAddressPrefix": "10.217.210.0/23",
+                          "access": "Allow",
+                          "priority": 105,
+                          "direction": "Outbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [],
+                          "sourceAddressPrefixes": [],
+                          "destinationAddressPrefixes": []
+                      }
+                  },
+                  {
+                      "name": "IntraSubnet_Inbound_Allow",
+                      "properties": {
+                          "protocol": "*",
+                          "sourcePortRange": "*",
+                          "destinationPortRange": "*",
+                          "sourceAddressPrefix": "10.217.210.0/23",
+                          "destinationAddressPrefix": "*",
+                          "access": "Allow",
+                          "priority": 105,
+                          "direction": "Inbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [],
+                          "sourceAddressPrefixes": [],
+                          "destinationAddressPrefixes": []
+                      }
+                  },
+                  {
+                      "name": "Nprod-int-general-eastus2_Outbound_Allow",
+                      "properties": {
+                          "description": "ITCS-2801",
+                          "protocol": "*",
+                          "sourcePortRange": "*",
+                          "sourceAddressPrefix": "*",
+                          "destinationAddressPrefix": "10.124.70.59",
+                          "access": "Allow",
+                          "priority": 106,
+                          "direction": "Outbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [
+                              "80",
+                              "443",
+                              "990",
+                              "8080",
+                              "444",
+                              "21",
+                              "1700",
+                              "3389"
+                          ],
+                          "sourceAddressPrefixes": [],
+                          "destinationAddressPrefixes": []
+                      }
+                  },
+                  {
+                      "name": "Nprod-int-general-eastus2_Inbound_Allow",
+                      "properties": {
+                          "description": "ITCS-1296",
+                          "protocol": "*",
+                          "sourcePortRange": "*",
+                          "sourceAddressPrefix": "10.124.70.59",
+                          "destinationAddressPrefix": "*",
+                          "access": "Allow",
+                          "priority": 106,
+                          "direction": "Inbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [
+                              "80",
+                              "443",
+                              "990",
+                              "8080",
+                              "444",
+                              "21",
+                              "1700",
+                              "3389"
+                          ],
+                          "sourceAddressPrefixes": [],
+                          "destinationAddressPrefixes": []
+                      }
+                  },
+                  {
+                      "name": "Redis_Deps_DNS",
+                      "properties": {
+                          "protocol": "*",
+                          "sourcePortRange": "*",
+                          "destinationPortRange": "53",
+                          "sourceAddressPrefix": "*",
+                          "access": "Allow",
+                          "priority": 1002,
+                          "direction": "Outbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [],
+                          "sourceAddressPrefixes": [],
+                          "destinationAddressPrefixes": [
+                              "168.63.129.16",
+                              "169.254.169.254"
+                          ]
+                      }
+                  },
+                  {
+                      "name": "OnPrem_Outbound_Allow_01_Moved",
+                      "properties": {
+                          "protocol": "*",
+                          "sourcePortRange": "*",
+                          "destinationPortRange": "*",
+                          "sourceAddressPrefix": "*",
+                          "access": "Allow",
+                          "priority": 1003,
+                          "direction": "Outbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [],
+                          "sourceAddressPrefixes": [],
+                          "destinationAddressPrefixes": [
+                              "192.168.0.0/16",
+                              "172.16.0.0/16",
+                              "172.18.0.0/16",
+                              "172.19.0.0/16",
+                              "172.20.0.0/16",
+                              "172.21.0.0/16",
+                              "172.22.0.0/16",
+                              "172.23.0.0/16",
+                              "172.24.0.0/16",
+                              "172.25.0.0/16",
+                              "172.26.0.0/16",
+                              "172.27.0.0/16",
+                              "172.28.0.0/16",
+                              "172.29.0.0/16",
+                              "172.30.0.0/16",
+                              "172.31.0.0/16"
+                          ]
+                      }
+                  },
+                  {
+                      "name": "OnPrem_Inbound_Allow_01_Moved",
+                      "properties": {
+                          "protocol": "*",
+                          "sourcePortRange": "*",
+                          "destinationPortRange": "*",
+                          "destinationAddressPrefix": "*",
+                          "access": "Allow",
+                          "priority": 1004,
+                          "direction": "Inbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [],
+                          "sourceAddressPrefixes": [
+                              "192.168.0.0/16",
+                              "172.16.0.0/16",
+                              "172.18.0.0/16",
+                              "172.19.0.0/16",
+                              "172.20.0.0/16",
+                              "172.21.0.0/16",
+                              "172.22.0.0/16",
+                              "172.23.0.0/16",
+                              "172.24.0.0/16",
+                              "172.25.0.0/16",
+                              "172.26.0.0/16",
+                              "172.27.0.0/16",
+                              "172.28.0.0/16",
+                              "172.29.0.0/16",
+                              "172.30.0.0/16",
+                              "172.31.0.0/16",
+                              "10.235.16.0/23",
+                              "10.235.18.0/23",
+                              "10.222.0.0/17",
+                              "10.223.0.0/17"
+                          ],
+                          "destinationAddressPrefixes": []
+                      }
+                  },
+                  {
+                      "name": "WAG_User_Subnets_Inbound_Allow_01_Moved",
+                      "properties": {
+                          "description": "Walgreens User Subnets",
+                          "protocol": "*",
+                          "sourcePortRange": "*",
+                          "destinationPortRange": "*",
+                          "destinationAddressPrefix": "*",
+                          "access": "Allow",
+                          "priority": 1005,
+                          "direction": "Inbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [],
+                          "sourceAddressPrefixes": [
+                              "10.235.0.0/20",
+                              "10.236.0.0/16",
+                              "10.237.0.0/16",
+                              "10.221.54.0/24",
+                              "10.238.96.0/20"
+                          ],
+                          "destinationAddressPrefixes": []
+                      }
+                  },
+                  {
+                      "name": "VDI_Sensitive_Infrastructure_Support_Subnet_Moved",
+                      "properties": {
+                          "description": "VDI_Sensitive_Infrastructure_Support_Subnet",
+                          "protocol": "*",
+                          "sourcePortRange": "*",
+                          "sourceAddressPrefix": "10.248.96.0/22",
+                          "destinationAddressPrefix": "*",
+                          "access": "Allow",
+                          "priority": 1006,
+                          "direction": "Inbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [
+                              "22",
+                              "135",
+                              "137",
+                              "138",
+                              "139",
+                              "445",
+                              "80",
+                              "443",
+                              "3389",
+                              "5985-5986"
+                          ],
+                          "sourceAddressPrefixes": [],
+                          "destinationAddressPrefixes": []
+                      }
+                  },
+                  {
+                      "name": "Outbound_Infra_Tcp",
+                      "properties": {
+                          "description": "Standard outbound TCP allowances to the infrastructure zone for core services",
+                          "protocol": "Tcp",
+                          "sourcePortRange": "*",
+                          "sourceAddressPrefix": "*",
+                          "access": "Allow",
+                          "priority": 2500,
+                          "direction": "Outbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [
+                              "25",
+                              "53",
+                              "80",
+                              "111",
+                              "443",
+                              "1389",
+                              "1636",
+                              "1918",
+                              "2389",
+                              "5647",
+                              "5670",
+                              "8000",
+                              "8080",
+                              "8989",
+                              "8140",
+                              "8443",
+                              "9090",
+                              "10000",
+                              "10002",
+                              "8888",
+                              "7081",
+                              "18080",
+                              "514",
+                              "1514-1515",
+                              "5601",
+                              "9200-9300",
+                              "88",
+                              "135",
+                              "389",
+                              "445",
+                              "464",
+                              "636",
+                              "3268-3269",
+                              "9389",
+                              "5722",
+                              "49152-65535"
+                          ],
+                          "sourceAddressPrefixes": [],
+                          "destinationAddressPrefixes": [
+                              "172.19.201.0/24",
+                              "172.23.12.0/22",
+                              "172.31.204.0/22",
+                              "10.217.14.0/23",
+                              "10.217.75.0/24",
+                              "10.217.74.0/24",
+                              "10.124.0.0/23",
+                              "10.124.128.0/23"
+                          ]
+                      }
+                  },
+                  {
+                      "name": "Inbound_Infra_Tcp",
+                      "properties": {
+                          "description": "Standard inbound TCP allowances from the infrastructure zone for core services",
+                          "protocol": "Tcp",
+                          "sourcePortRange": "*",
+                          "destinationAddressPrefix": "*",
+                          "access": "Allow",
+                          "priority": 2500,
+                          "direction": "Inbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [
+                              "22",
+                              "80",
+                              "135",
+                              "139",
+                              "443",
+                              "445",
+                              "1433",
+                              "3389",
+                              "5432",
+                              "5985",
+                              "5986",
+                              "9042",
+                              "61621",
+                              "7080",
+                              "18080",
+                              "4040-4050",
+                              "8983",
+                              "8980"
+                          ],
+                          "sourceAddressPrefixes": [
+                              "172.19.201.0/24",
+                              "172.23.12.0/22",
+                              "172.31.204.0/22",
+                              "10.217.14.0/23",
+                              "10.217.75.0/24",
+                              "10.217.74.0/24",
+                              "10.124.0.0/23",
+                              "10.124.128.0/23"
+                          ],
+                          "destinationAddressPrefixes": []
+                      }
+                  },
+                  {
+                      "name": "Outbound_Infra_Udp",
+                      "properties": {
+                          "description": "Standard outbound UDP allowances to the infrastructure zone for core services",
+                          "protocol": "Udp",
+                          "sourcePortRange": "*",
+                          "sourceAddressPrefix": "*",
+                          "access": "Allow",
+                          "priority": 2501,
+                          "direction": "Outbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [
+                              "53",
+                              "67-69",
+                              "123",
+                              "162",
+                              "1918",
+                              "514",
+                              "1514-1515",
+                              "88",
+                              "137",
+                              "389",
+                              "464",
+                              "636"
+                          ],
+                          "sourceAddressPrefixes": [],
+                          "destinationAddressPrefixes": [
+                              "172.19.201.0/24",
+                              "172.23.12.0/22",
+                              "172.31.204.0/22",
+                              "10.217.14.0/23",
+                              "10.217.75.0/24",
+                              "10.217.74.0/24",
+                              "10.124.0.0/23",
+                              "10.124.128.0/23"
+                          ]
+                      }
+                  },
+                  {
+                      "name": "Inbound_Infra_Udp",
+                      "properties": {
+                          "description": "Standard inbound UDP allowances from the infrastructure zone for core services",
+                          "protocol": "Udp",
+                          "sourcePortRange": "*",
+                          "destinationAddressPrefix": "*",
+                          "access": "Allow",
+                          "priority": 2501,
+                          "direction": "Inbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [
+                              "137",
+                              "138",
+                              "161"
+                          ],
+                          "sourceAddressPrefixes": [
+                              "172.19.201.0/24",
+                              "172.23.12.0/22",
+                              "172.31.204.0/22",
+                              "10.217.14.0/23",
+                              "10.217.75.0/24",
+                              "10.217.74.0/24",
+                              "10.124.0.0/23",
+                              "10.124.128.0/23"
+                          ],
+                          "destinationAddressPrefixes": []
+                      }
+                  },
+                  {
+                      "name": "ILB_Inbound_Allow",
+                      "properties": {
+                          "description": "LB-Rule",
+                          "protocol": "*",
+                          "sourcePortRange": "*",
+                          "destinationPortRange": "*",
+                          "sourceAddressPrefix": "AzureLoadBalancer",
+                          "destinationAddressPrefix": "*",
+                          "access": "Allow",
+                          "priority": 3000,
+                          "direction": "Inbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [],
+                          "sourceAddressPrefixes": [],
+                          "destinationAddressPrefixes": []
+                      }
+                  },
+                  {
+                      "name": "Consolidated_Microsoft_Servers_rule",
+                      "properties": {
+                          "description": "Allow outbound to Azure servers",
+                          "protocol": "Tcp",
+                          "sourcePortRange": "*",
+                          "destinationPortRange": "*",
+                          "sourceAddressPrefix": "*",
+                          "destinationAddressPrefix": "AzureCloud",
+                          "access": "Allow",
+                          "priority": 3000,
+                          "direction": "Outbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [],
+                          "sourceAddressPrefixes": [],
+                          "destinationAddressPrefixes": []
+                      }
+                  },
+                  {
+                      "name": "OnPrem_Inbound_Allow_01",
+                      "properties": {
+                          "description": "null",
+                          "protocol": "*",
+                          "sourcePortRange": "*",
+                          "destinationPortRange": "*",
+                          "destinationAddressPrefix": "*",
+                          "access": "Allow",
+                          "priority": 4001,
+                          "direction": "Inbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [],
+                          "sourceAddressPrefixes": [
+                              "192.168.0.0/16",
+                              "172.16.0.0/16",
+                              "172.18.0.0/16",
+                              "172.19.0.0/16",
+                              "172.20.0.0/16",
+                              "172.21.0.0/16",
+                              "172.22.0.0/16",
+                              "172.23.0.0/16",
+                              "172.24.0.0/16",
+                              "172.25.0.0/16",
+                              "172.26.0.0/16",
+                              "172.27.0.0/16",
+                              "172.28.0.0/16",
+                              "172.29.0.0/16",
+                              "172.30.0.0/16",
+                              "172.31.0.0/16",
+                              "10.222.0.0/16",
+                              "10.223.0.0/16"
+                          ],
+                          "destinationAddressPrefixes": []
+                      }
+                  },
+                  {
+                      "name": "OnPrem_Outbound_Allow_01",
+                      "properties": {
+                          "description": "null",
+                          "protocol": "*",
+                          "sourcePortRange": "*",
+                          "destinationPortRange": "*",
+                          "sourceAddressPrefix": "*",
+                          "access": "Allow",
+                          "priority": 4001,
+                          "direction": "Outbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [],
+                          "sourceAddressPrefixes": [],
+                          "destinationAddressPrefixes": [
+                              "192.168.0.0/16",
+                              "172.16.0.0/16",
+                              "172.18.0.0/16",
+                              "172.19.0.0/16",
+                              "172.20.0.0/16",
+                              "172.21.0.0/16",
+                              "172.22.0.0/16",
+                              "172.23.0.0/16",
+                              "172.24.0.0/16",
+                              "172.25.0.0/16",
+                              "172.26.0.0/16",
+                              "172.27.0.0/16",
+                              "172.28.0.0/16",
+                              "172.29.0.0/16",
+                              "172.30.0.0/16",
+                              "172.31.0.0/16"
+                          ]
+                      }
+                  },
+                  {
+                      "name": "WAG_User_Subnets_Inbound_Allow_01",
+                      "properties": {
+                          "description": "Walgreens User Subnets",
+                          "protocol": "*",
+                          "sourcePortRange": "*",
+                          "destinationPortRange": "*",
+                          "destinationAddressPrefix": "*",
+                          "access": "Allow",
+                          "priority": 4002,
+                          "direction": "Inbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [],
+                          "sourceAddressPrefixes": [
+                              "10.235.0.0/20",
+                              "10.235.16.0/23",
+                              "10.235.18.0/23",
+                              "10.236.0.0/16",
+                              "10.237.0.0/16",
+                              "10.239.0.0/16",
+                              "10.221.54.0/24",
+                              "10.238.96.0/20"
+                          ],
+                          "destinationAddressPrefixes": []
+                      }
+                  },
+                  {
+                      "name": "VDI_Sensitive_Infrastructure_Support_Subnet",
+                      "properties": {
+                          "description": "VDI_Sensitive_Infrastructure_Support_Subnet",
+                          "protocol": "*",
+                          "sourcePortRange": "*",
+                          "sourceAddressPrefix": "10.248.96.0/22",
+                          "destinationAddressPrefix": "*",
+                          "access": "Allow",
+                          "priority": 4003,
+                          "direction": "Inbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [
+                              "22",
+                              "135",
+                              "137",
+                              "138",
+                              "139",
+                              "445",
+                              "1433",
+                              "80",
+                              "443",
+                              "3389",
+                              "5985-5986"
+                          ],
+                          "sourceAddressPrefixes": [],
+                          "destinationAddressPrefixes": []
+                      }
+                  },
+                  {
+                      "name": "Deny-one-Inbound",
+                      "properties": {
+                          "description": "Deny whatever is left",
+                          "protocol": "*",
+                          "sourcePortRange": "*",
+                          "destinationPortRange": "*",
+                          "destinationAddressPrefix": "*",
+                          "access": "Deny",
+                          "priority": 4050,
+                          "direction": "Inbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [],
+                          "sourceAddressPrefixes": [
+                              "10.0.0.0/8",
+                              "172.16.0.0/12",
+                              "192.168.0.0/16"
+                          ],
+                          "destinationAddressPrefixes": []
+                      }
+                  },
+                  {
+                      "name": "Deny-Two-Inbound",
+                      "properties": {
+                          "description": "Deny Internet",
+                          "protocol": "*",
+                          "sourcePortRange": "*",
+                          "destinationPortRange": "*",
+                          "sourceAddressPrefix": "Internet",
+                          "destinationAddressPrefix": "*",
+                          "access": "Deny",
+                          "priority": 4051,
+                          "direction": "Inbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [],
+                          "sourceAddressPrefixes": [],
+                          "destinationAddressPrefixes": []
+                      }
+                  },
+                  {
+                      "name": "Deny-two-Outbound",
+                      "properties": {
+                          "description": "Deny whatever is left",
+                          "protocol": "*",
+                          "sourcePortRange": "*",
+                          "destinationPortRange": "*",
+                          "sourceAddressPrefix": "*",
+                          "access": "Deny",
+                          "priority": 4052,
+                          "direction": "Outbound",
+                          "sourcePortRanges": [],
+                          "destinationPortRanges": [],
+                          "sourceAddressPrefixes": [],
+                          "destinationAddressPrefixes": [
+                              "10.0.0.0/8",
+                              "172.16.0.0/12",
+                              "192.168.0.0/16"
+                          ]
+                      }
+                  }
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/Consolidated_Microsoft_Servers_rule",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "description": "Allow outbound to Azure servers",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "*",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "AzureCloud",
+              "access": "Allow",
+              "priority": 3000,
+              "direction": "Outbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [],
+              "sourceAddressPrefixes": [],
+              "destinationAddressPrefixes": []
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/Deny-one-Inbound",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "description": "Deny whatever is left",
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Deny",
+              "priority": 4050,
+              "direction": "Inbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [],
+              "sourceAddressPrefixes": [
+                  "10.0.0.0/8",
+                  "172.16.0.0/12",
+                  "192.168.0.0/16"
+              ],
+              "destinationAddressPrefixes": []
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/Deny-Two-Inbound",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "description": "Deny Internet",
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "*",
+              "sourceAddressPrefix": "Internet",
+              "destinationAddressPrefix": "*",
+              "access": "Deny",
+              "priority": 4051,
+              "direction": "Inbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [],
+              "sourceAddressPrefixes": [],
+              "destinationAddressPrefixes": []
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/Deny-two-Outbound",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "description": "Deny whatever is left",
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "*",
+              "sourceAddressPrefix": "*",
+              "access": "Deny",
+              "priority": 4052,
+              "direction": "Outbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [],
+              "sourceAddressPrefixes": [],
+              "destinationAddressPrefixes": [
+                  "10.0.0.0/8",
+                  "172.16.0.0/12",
+                  "192.168.0.0/16"
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/EAPI_Inbound_Allow",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "description": "ITCS-2546",
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "443",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 104,
+              "direction": "Inbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [],
+              "sourceAddressPrefixes": [
+                  "10.124.70.33",
+                  "10.124.70.154",
+                  "10.124.70.77"
+              ],
+              "destinationAddressPrefixes": []
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/EAPI_Outbound_Allow",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "description": "ITCS-2546",
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "443",
+              "sourceAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 104,
+              "direction": "Outbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [],
+              "sourceAddressPrefixes": [],
+              "destinationAddressPrefixes": [
+                  "10.124.70.33",
+                  "10.124.70.154"
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/ILB_Inbound_Allow",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "description": "LB-Rule",
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "*",
+              "sourceAddressPrefix": "AzureLoadBalancer",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 3000,
+              "direction": "Inbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [],
+              "sourceAddressPrefixes": [],
+              "destinationAddressPrefixes": []
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/Inbound_Infra_Tcp",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "description": "Standard inbound TCP allowances from the infrastructure zone for core services",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 2500,
+              "direction": "Inbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [
+                  "22",
+                  "80",
+                  "135",
+                  "139",
+                  "443",
+                  "445",
+                  "1433",
+                  "3389",
+                  "5432",
+                  "5985",
+                  "5986",
+                  "9042",
+                  "61621",
+                  "7080",
+                  "18080",
+                  "4040-4050",
+                  "8983",
+                  "8980"
+              ],
+              "sourceAddressPrefixes": [
+                  "172.19.201.0/24",
+                  "172.23.12.0/22",
+                  "172.31.204.0/22",
+                  "10.217.14.0/23",
+                  "10.217.75.0/24",
+                  "10.217.74.0/24",
+                  "10.124.0.0/23",
+                  "10.124.128.0/23"
+              ],
+              "destinationAddressPrefixes": []
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/Inbound_Infra_Udp",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "description": "Standard inbound UDP allowances from the infrastructure zone for core services",
+              "protocol": "Udp",
+              "sourcePortRange": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 2501,
+              "direction": "Inbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [
+                  "137",
+                  "138",
+                  "161"
+              ],
+              "sourceAddressPrefixes": [
+                  "172.19.201.0/24",
+                  "172.23.12.0/22",
+                  "172.31.204.0/22",
+                  "10.217.14.0/23",
+                  "10.217.75.0/24",
+                  "10.217.74.0/24",
+                  "10.124.0.0/23",
+                  "10.124.128.0/23"
+              ],
+              "destinationAddressPrefixes": []
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/IntraSubnet_Inbound_Allow",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "*",
+              "sourceAddressPrefix": "10.217.210.0/23",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 105,
+              "direction": "Inbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [],
+              "sourceAddressPrefixes": [],
+              "destinationAddressPrefixes": []
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/IntraSubnet_Outbound_Allow",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "*",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "10.217.210.0/23",
+              "access": "Allow",
+              "priority": 105,
+              "direction": "Outbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [],
+              "sourceAddressPrefixes": [],
+              "destinationAddressPrefixes": []
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/Nprod-int-general-eastus2_Inbound_Allow",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "description": "ITCS-1296",
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "sourceAddressPrefix": "10.124.70.59",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 106,
+              "direction": "Inbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [
+                  "80",
+                  "443",
+                  "990",
+                  "8080",
+                  "444",
+                  "21",
+                  "1700",
+                  "3389"
+              ],
+              "sourceAddressPrefixes": [],
+              "destinationAddressPrefixes": []
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/Nprod-int-general-eastus2_Outbound_Allow",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "description": "ITCS-2801",
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "10.124.70.59",
+              "access": "Allow",
+              "priority": 106,
+              "direction": "Outbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [
+                  "80",
+                  "443",
+                  "990",
+                  "8080",
+                  "444",
+                  "21",
+                  "1700",
+                  "3389"
+              ],
+              "sourceAddressPrefixes": [],
+              "destinationAddressPrefixes": []
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/OnPrem_Inbound_Allow_01",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "description": "null",
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 4001,
+              "direction": "Inbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [],
+              "sourceAddressPrefixes": [
+                  "192.168.0.0/16",
+                  "172.16.0.0/16",
+                  "172.18.0.0/16",
+                  "172.19.0.0/16",
+                  "172.20.0.0/16",
+                  "172.21.0.0/16",
+                  "172.22.0.0/16",
+                  "172.23.0.0/16",
+                  "172.24.0.0/16",
+                  "172.25.0.0/16",
+                  "172.26.0.0/16",
+                  "172.27.0.0/16",
+                  "172.28.0.0/16",
+                  "172.29.0.0/16",
+                  "172.30.0.0/16",
+                  "172.31.0.0/16",
+                  "10.222.0.0/16",
+                  "10.223.0.0/16"
+              ],
+              "destinationAddressPrefixes": []
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/OnPrem_Inbound_Allow_01_Moved",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 1004,
+              "direction": "Inbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [],
+              "sourceAddressPrefixes": [
+                  "192.168.0.0/16",
+                  "172.16.0.0/16",
+                  "172.18.0.0/16",
+                  "172.19.0.0/16",
+                  "172.20.0.0/16",
+                  "172.21.0.0/16",
+                  "172.22.0.0/16",
+                  "172.23.0.0/16",
+                  "172.24.0.0/16",
+                  "172.25.0.0/16",
+                  "172.26.0.0/16",
+                  "172.27.0.0/16",
+                  "172.28.0.0/16",
+                  "172.29.0.0/16",
+                  "172.30.0.0/16",
+                  "172.31.0.0/16",
+                  "10.235.16.0/23",
+                  "10.235.18.0/23",
+                  "10.222.0.0/17",
+                  "10.223.0.0/17"
+              ],
+              "destinationAddressPrefixes": []
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/OnPrem_Outbound_Allow_01",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "description": "null",
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "*",
+              "sourceAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 4001,
+              "direction": "Outbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [],
+              "sourceAddressPrefixes": [],
+              "destinationAddressPrefixes": [
+                  "192.168.0.0/16",
+                  "172.16.0.0/16",
+                  "172.18.0.0/16",
+                  "172.19.0.0/16",
+                  "172.20.0.0/16",
+                  "172.21.0.0/16",
+                  "172.22.0.0/16",
+                  "172.23.0.0/16",
+                  "172.24.0.0/16",
+                  "172.25.0.0/16",
+                  "172.26.0.0/16",
+                  "172.27.0.0/16",
+                  "172.28.0.0/16",
+                  "172.29.0.0/16",
+                  "172.30.0.0/16",
+                  "172.31.0.0/16"
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/OnPrem_Outbound_Allow_01_Moved",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "*",
+              "sourceAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 1003,
+              "direction": "Outbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [],
+              "sourceAddressPrefixes": [],
+              "destinationAddressPrefixes": [
+                  "192.168.0.0/16",
+                  "172.16.0.0/16",
+                  "172.18.0.0/16",
+                  "172.19.0.0/16",
+                  "172.20.0.0/16",
+                  "172.21.0.0/16",
+                  "172.22.0.0/16",
+                  "172.23.0.0/16",
+                  "172.24.0.0/16",
+                  "172.25.0.0/16",
+                  "172.26.0.0/16",
+                  "172.27.0.0/16",
+                  "172.28.0.0/16",
+                  "172.29.0.0/16",
+                  "172.30.0.0/16",
+                  "172.31.0.0/16"
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/Outbound_Infra_Tcp",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "description": "Standard outbound TCP allowances to the infrastructure zone for core services",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "sourceAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 2500,
+              "direction": "Outbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [
+                  "25",
+                  "53",
+                  "80",
+                  "111",
+                  "443",
+                  "1389",
+                  "1636",
+                  "1918",
+                  "2389",
+                  "5647",
+                  "5670",
+                  "8000",
+                  "8080",
+                  "8989",
+                  "8140",
+                  "8443",
+                  "9090",
+                  "10000",
+                  "10002",
+                  "8888",
+                  "7081",
+                  "18080",
+                  "514",
+                  "1514-1515",
+                  "5601",
+                  "9200-9300",
+                  "88",
+                  "135",
+                  "389",
+                  "445",
+                  "464",
+                  "636",
+                  "3268-3269",
+                  "9389",
+                  "5722",
+                  "49152-65535"
+              ],
+              "sourceAddressPrefixes": [],
+              "destinationAddressPrefixes": [
+                  "172.19.201.0/24",
+                  "172.23.12.0/22",
+                  "172.31.204.0/22",
+                  "10.217.14.0/23",
+                  "10.217.75.0/24",
+                  "10.217.74.0/24",
+                  "10.124.0.0/23",
+                  "10.124.128.0/23"
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/Outbound_Infra_Udp",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "description": "Standard outbound UDP allowances to the infrastructure zone for core services",
+              "protocol": "Udp",
+              "sourcePortRange": "*",
+              "sourceAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 2501,
+              "direction": "Outbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [
+                  "53",
+                  "67-69",
+                  "123",
+                  "162",
+                  "1918",
+                  "514",
+                  "1514-1515",
+                  "88",
+                  "137",
+                  "389",
+                  "464",
+                  "636"
+              ],
+              "sourceAddressPrefixes": [],
+              "destinationAddressPrefixes": [
+                  "172.19.201.0/24",
+                  "172.23.12.0/22",
+                  "172.31.204.0/22",
+                  "10.217.14.0/23",
+                  "10.217.75.0/24",
+                  "10.217.74.0/24",
+                  "10.124.0.0/23",
+                  "10.124.128.0/23"
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/Redis_Deps_DNS",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "53",
+              "sourceAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 1002,
+              "direction": "Outbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [],
+              "sourceAddressPrefixes": [],
+              "destinationAddressPrefixes": [
+                  "168.63.129.16",
+                  "169.254.169.254"
+              ]
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/VDI_Sensitive_Infrastructure_Support_Subnet",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "description": "VDI_Sensitive_Infrastructure_Support_Subnet",
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "sourceAddressPrefix": "10.248.96.0/22",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 4003,
+              "direction": "Inbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [
+                  "22",
+                  "135",
+                  "137",
+                  "138",
+                  "139",
+                  "445",
+                  "1433",
+                  "80",
+                  "443",
+                  "3389",
+                  "5985-5986"
+              ],
+              "sourceAddressPrefixes": [],
+              "destinationAddressPrefixes": []
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/VDI_Sensitive_Infrastructure_Support_Subnet_Moved",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "description": "VDI_Sensitive_Infrastructure_Support_Subnet",
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "sourceAddressPrefix": "10.248.96.0/22",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 1006,
+              "direction": "Inbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [
+                  "22",
+                  "135",
+                  "137",
+                  "138",
+                  "139",
+                  "445",
+                  "80",
+                  "443",
+                  "3389",
+                  "5985-5986"
+              ],
+              "sourceAddressPrefixes": [],
+              "destinationAddressPrefixes": []
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/WAG_User_Subnets_Inbound_Allow_01",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "description": "Walgreens User Subnets",
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 4002,
+              "direction": "Inbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [],
+              "sourceAddressPrefixes": [
+                  "10.235.0.0/20",
+                  "10.235.16.0/23",
+                  "10.235.18.0/23",
+                  "10.236.0.0/16",
+                  "10.237.0.0/16",
+                  "10.239.0.0/16",
+                  "10.221.54.0/24",
+                  "10.238.96.0/20"
+              ],
+              "destinationAddressPrefixes": []
+          }
+      },
+      {
+          "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+          "apiVersion": "2020-11-01",
+          "name": "gs-nprod-cloudplatforms-sen-eastus2-vnet01-web/WAG_User_Subnets_Inbound_Allow_01_Moved",
+          "dependsOn": [
+              "[resourceId('Microsoft.Network/networkSecurityGroups', 'gs-nprod-cloudplatforms-sen-eastus2-vnet01-web')]"
+          ],
+          "properties": {
+              "description": "Walgreens User Subnets",
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 1005,
+              "direction": "Inbound",
+              "sourcePortRanges": [],
+              "destinationPortRanges": [],
+              "sourceAddressPrefixes": [
+                  "10.235.0.0/20",
+                  "10.236.0.0/16",
+                  "10.237.0.0/16",
+                  "10.221.54.0/24",
+                  "10.238.96.0/20"
+              ],
+              "destinationAddressPrefixes": []
+          }
+      }
+  ]
+}

@@ -1,14 +1,14 @@
 #!/bin/bash
 
 subscription="e752c181-7a2c-4de5-b16b-b3288ed54e42"
-resourceGroupName="perftest-RG"
+resourceGroupName="bicep-demo-RG"
 location="eastus2"
 
-# az login
+az login
 
-# az account set --subscription $subscriptionId
+az account set --subscription $subscriptionId
 
-# az account show --subscription $subscriptionId
+az account show --subscription $subscriptionId
 
 az group create --resource-group $resourceGroupName --location $location
 

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "variables": {},
+  "resources": [
+      {
+          "type": "Microsoft.Web/serverfarms",
+          "apiVersion": "2018-02-01",
+          "name": "jlh-test-func-plan",
+          "location": "East US 2",
+          "tags": {
+              "CostCenter": "Project LEAP 5001",
+              "Department": "Cloud COE",
+              "EnvType": "Non-Production",
+              "LegalSubEntity": "Walgreen Co",
+              "Sensitivity": "Non-Sensitive",
+              "SenType": "Not Applicable",
+              "SubDivision": "Global Cloud & Platform Service",
+              "CostCode": "1000608660"
+          },
+          "sku": {
+              "name": "EP2",
+              "tier": "ElasticPremium",
+              "size": "EP2",
+              "family": "EP",
+              "capacity": 1
+          },
+          "kind": "elastic",
+          "properties": {
+              "perSiteScaling": false,
+              "maximumElasticWorkerCount": 20,
+              "isSpot": false,
+              "reserved": false,
+              "isXenon": false,
+              "hyperV": false,
+              "targetWorkerCount": 0,
+              "targetWorkerSizeId": 0
+          }
+      }
+  ]
+}

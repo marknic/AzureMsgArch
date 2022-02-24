@@ -1,7 +1,11 @@
 #!/bin/bash
 
-subscription="e752c181-7a2c-4de5-b16b-b3288ed54e42"
-resourceGroupName="perftest-RG"
-location="eastus2"
+resourceGroupName="bicep-demo-RG"
 
-az deployment group create --name bicepdeploy02 --resource-group $resourceGroupName --template-file './deploytest.bicep'
+aiName="mn-demo2-ai"
+
+az deployment group create --name bicepdeploy02 --resource-group $resourceGroupName --template-file './ai.bicep'
+
+
+# aiName="mn-demo2-ai"
+# az deployment group create --name bicepdeploy02 --resource-group $resourceGroupName --template-file './ai.bicep' --parameters "{ \"aiName\": { \"value\": \"$aiName\" } }"

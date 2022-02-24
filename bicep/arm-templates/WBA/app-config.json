@@ -1,0 +1,52 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "variables": {},
+  "resources": [
+      {
+          "type": "Microsoft.AppConfiguration/configurationStores",
+          "apiVersion": "2021-03-01-preview",
+          "name": "flippity-flop-appconfig-11-finaltest",
+          "location": "eastus2",
+          "tags": {
+              "SubDivision": "Global Cloud & Platform Service",
+              "EnvType": "Non-Production",
+              "LegalSubEntity": "Walgreen Co",
+              "SenType": "Not Applicable",
+              "CostCenter": "Project LEAP 5001",
+              "Department": "Cloud COE",
+              "Sensitivity": "Non-Sensitive",
+              "CostCode": "1000608660"
+          },
+          "sku": {
+              "name": "standard"
+          },
+          "identity": {
+              "type": "None"
+          },
+          "properties": {
+              "encryption": {},
+              "publicNetworkAccess": "Disabled",
+              "disableLocalAuth": false
+          }
+      },
+      {
+          "type": "Microsoft.AppConfiguration/configurationStores/privateEndpointConnections",
+          "apiVersion": "2021-03-01-preview",
+          "name": "flippity-flop-appconfig-11-finaltest/flippity-flop-appconfig-11-finaltest-privateEndpointConnection",
+          "dependsOn": [
+              "[resourceId('Microsoft.AppConfiguration/configurationStores', 'flippity-flop-appconfig-11-finaltest')]"
+          ],
+          "properties": {
+              "privateEndpoint": {
+                  "id": "/subscriptions/96a4f83f-9a81-4321-b8a6-1e198ca1fb31/resourceGroups/tiger-team03/providers/Microsoft.Network/privateEndpoints/flippity-flop-appconfig-11-finaltest-privateEndpoint"
+              },
+              "privateLinkServiceConnectionState": {
+                  "status": "Approved",
+                  "description": "Auto-Approved"
+              }
+          }
+      }
+  ]
+}

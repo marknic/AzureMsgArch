@@ -54,4 +54,4 @@ resource asp 'Microsoft.Web/serverfarms@2018-02-01' = {
   }
 }
 
-output  aspId string = asp.id
+output aspId string = asp.id
